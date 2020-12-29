@@ -4,6 +4,7 @@ namespace Framer\Core\Model;
 
 use Framer\Core\Model\EnvModel;
 use Framer\Core\Exceptions\DbException;
+use Framer\Core\App\Helpers;
 
 class DbManager
 {
@@ -22,8 +23,8 @@ class DbManager
         $ENV = EnvModel::get();
 
         try {
-            $pdo_options[\PDO::ATTR_ERRMODE] = \PDO::ERRMODE_EXCEPTION ;
-            self::$db = new \PDO($ENV->db_type . ':db_name=' . $ENV->db_name . '; host=' . $ENV->db_host, $ENV->db_user, $ENV->db_password, $pdo_options) ;
+            $pdo_options[\PDO::ATTR_ERRMODE] = \PDO::ERRMODE_EXCEPTION;
+            self::$db = new \PDO($ENV->db_type . ':dbname=' . $ENV->db_name . '; host=' . $ENV->db_host, $ENV->db_user, $ENV->db_password, $pdo_options);
             self::$db->exec("set names utf8");
         }
         catch (\Throwable $th) {
@@ -44,18 +45,39 @@ class DbManager
      */
     static function executeQuery($queryString, $queryDatas=[]) {
 
-        self::connect();
         $toPrepare = count($queryDatas);
+        $queryDatas = self::sortDatasByQueryString($queryString, $queryDatas);
 
         try {
-            $query = $toPrepare ? self::$db->prepare($queryString) : self::$db->query($queryString);
+            $query = $toPrepare ? self::$db->prepare($queryString) : self::$db->exec($queryString);
             $result = $toPrepare ? $query->execute($queryDatas) : $query;
 
-            return $result->fetchAll(\PDO::FETCH_OBJ);
+            return is_object($result) ? $result->fetchAll(\PDO::FETCH_OBJ) : $result;
         }
         catch (\Throwable $th) {
             throw new DbException($th->getMessage());
         }
+    }
+
+
+    /**
+     * Sorts query datas to keep only the needed
+     * 
+     * @param array query datas
+     * 
+     * @return array query datas without unecessary field
+     */
+    static function sortDatasByQueryString($queryString, $queryDatas) {
+
+        $q = [];
+
+        foreach ($queryDatas as $key => $value) {
+            if ( Helpers::stringContainsWord($queryString, ":$key") ) {
+                $q[$key] = $value;
+            }
+        }
+
+        return $q;
     }
 
 }

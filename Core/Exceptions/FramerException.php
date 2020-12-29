@@ -74,4 +74,16 @@ class FramerException extends \Exception
         return (object) $errors;
     }
 
+
+    /**
+     * Sets a global error handle
+     * 
+     * @return void
+     */
+    public static function handleErrors() {
+        set_error_handler(function ($errno, $errstr, $errfile, $errline) {
+            var_dump($errno, $errstr, $errfile, $errline);
+        });
+    }
+
 }

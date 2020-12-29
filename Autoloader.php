@@ -8,13 +8,15 @@ class Autoloader
 
         spl_autoload_register(function ($class) {
 
-            $file = str_replace('Framer\\', '', $class);
-            $file = __DIR__ . '/' . str_replace('\\', DIRECTORY_SEPARATOR, $file).'.php';
+            $isfr = preg_match("#^Framer#", $class); // check if called class is from Framer namespace
+            $file = $isfr ? str_replace('Framer\\', '', $class) : $class;
+            $file = __DIR__ . ($isfr ? '/' : '/Vendors/') . str_replace('\\', DIRECTORY_SEPARATOR, $file).'.php';
             
             if (file_exists($file)) {
                 require $file;
                 return true;
             }
+            
             return false;
             
         });

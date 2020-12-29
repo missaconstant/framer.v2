@@ -15,8 +15,41 @@ class Helpers
      * 
      * @return string
      */
-    function removeDoubleSlash($string) {
+    static function removeDoubleSlash($string) {
         return preg_replace("#[/]+#", '/', $string);
+    }
+
+
+    /**
+     * Check wether a string contains a word, strict way
+     * 
+     * @param string the string to search on
+     * @param string the word to search in
+     * 
+     * @return bool
+     */
+    static function stringContainsWord($string, $word) {
+
+        # search match words
+        preg_match_all("#" . $word ."[\S]*#", $string, $matches);
+
+        return in_array($word, $matches[0]);
+
+    }
+
+
+    /**
+     * Dump variable
+     * 
+     * @param mixed - variable to dump
+     * 
+     * @return void
+     */
+    static function dump($var, $exit=false) {
+
+        var_dump($var);
+        $exit && exit();
+
     }
 
 
@@ -28,7 +61,7 @@ class Helpers
      * 
      * @return string the route
      */
-    function route($pathorname, $vars=null) {
+    static function route($pathorname, $vars=null) {
 
         $named = RouterStack::getRouteFromName( $pathorname );
 
@@ -48,7 +81,7 @@ class Helpers
      * 
      * @return void
      */
-    function redirect($pathorname) {
+    static function redirect($pathorname) {
         header("Location: " . self::route($pathorname));
     }
 

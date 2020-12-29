@@ -4,8 +4,10 @@ namespace Framer\Core\App;
 
 use Framer\Core\App\Request;
 use Framer\Core\Router\Router;
+use Framer\Core\Exceptions\FramerException;
 use Framer\Core\Exceptions\RouteNotFoundException;
 use Framer\Core\Exceptions\Traces;
+use Framer\Core\Model\DbManager;
 
 class App
 {
@@ -16,6 +18,12 @@ class App
      * starts app
      */
     static function start(Query $query) {
+
+        # set the global error handler
+        FramerException::handleErrors();
+
+        # connect database
+        DbManager::connect();
 
         # get the route from uri
         $route = Router::matchRoute( $query->uri, $query->method );
