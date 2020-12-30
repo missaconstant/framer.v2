@@ -1,6 +1,7 @@
 <?php
 
 use Framer\Core\App\Helpers;
+use Framer\Core\Model\EnvModel;
 use Framer\Core\App\View;
 
 
@@ -29,8 +30,8 @@ if ( !function_exists('redirect') ) {
 }
 
 if ( !function_exists('view') ) {
-    function view($view, $vars=null, $layout=null, $useTemplate=true) {
-        View::load($view, $vars, $layout, $useTemplate);
+    function view($viewpath, $vars=null, $layout=null) {
+        View::load($viewpath, $vars, $layout, EnvModel::get('engine'));
     }
 }
 
