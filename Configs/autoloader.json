@@ -1,0 +1,8 @@
+{
+
+    "autoload_class": {
+        "every": { "type": "default" },
+        "Latte": { "path": "Vendors/Latte", "type": "classmap" }
+    }
+    
+}

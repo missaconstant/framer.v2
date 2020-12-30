@@ -6,7 +6,6 @@ use Framer\Core\App\Request;
 use Framer\Core\Router\Router;
 use Framer\Core\Exceptions\FramerException;
 use Framer\Core\Exceptions\RouteNotFoundException;
-use Framer\Core\Exceptions\Traces;
 use Framer\Core\Model\DbManager;
 
 class App

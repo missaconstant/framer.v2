@@ -9,8 +9,9 @@ class FramerException extends \Exception
     protected $name = 'FramerException';
 
 
-    public function __construct() {
+    public function __construct($message='') {
         $this->setName(get_class($this));
+        $this->setMessage($message);
     }
 
 
@@ -82,7 +83,7 @@ class FramerException extends \Exception
      */
     public static function handleErrors() {
         set_error_handler(function ($errno, $errstr, $errfile, $errline) {
-            var_dump($errno, $errstr, $errfile, $errline);
+            #var_dump($errno, $errstr, $errfile, $errline);
         });
     }
 

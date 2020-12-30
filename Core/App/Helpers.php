@@ -75,6 +75,30 @@ class Helpers
 
 
     /**
+     * Get file uri
+     * 
+     * @param string file path
+     * 
+     * @return string file uri
+     */
+    static function uri($filepath='') {
+        return Request::setProtocol() . self::removeDoubleSlash(Request::setBaseHost() .'/'. $filepath);
+    }
+
+
+    /**
+     * Get file path
+     * 
+     * @param string file path
+     * 
+     * @return string file path
+     */
+    static function path($filepath='') {
+        return self::removeDoubleSlash(Request::setBasePath() .'/'. $filepath);
+    }
+
+
+    /**
      * Redirect to a route
      * 
      * @param string route path or name

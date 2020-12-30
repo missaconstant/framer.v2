@@ -20,6 +20,9 @@ use Framer\Core\Exceptions\FramerException;
 
 
 try {
+    # callables
+    require_once __DIR__ . '/Core/App/Callables.php';
+
     # web routes
     require_once __DIR__ . '/Routes/WebRoutes.php';
 

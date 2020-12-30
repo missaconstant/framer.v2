@@ -117,4 +117,14 @@ class Request
         return Helpers::removeDoubleSlash($_SERVER['DOCUMENT_ROOT'] . self::setBaseDir());
     }
 
+
+    // /**
+    //  * Get app ROOT path
+    //  * 
+    //  * @return string root path
+    //  */
+    // static function setRootPath() {
+    //     return str_replace('/index.php', '', $_SERVER['SCRIPT_FILENAME']);
+    // }
+
 }
