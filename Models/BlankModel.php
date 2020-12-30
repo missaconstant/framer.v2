@@ -4,17 +4,16 @@ namespace Framer\Models;
 
 use Framer\Core\Model\BaseModel;
 
-class Book extends BaseModel
+class Blank extends BaseModel
 {
     
     public $id;
-    public $title;
-    public $reading;
-    public $price;
+    public $field1;
+    public $field2;
 
 
     public function __construct() {
-        parent::__construct('book');
+        parent::__construct('blank');
     }
 
 }
