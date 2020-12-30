@@ -23,11 +23,11 @@ class Autoloader
             $cls = $spc[count($spc) - 1];
             $inc = $ENV->autoload_class[$nsp] ?? false;
             $typ = 'default';
-            $pth = self::$pathbase;
+            $pth = null;
 
             if ( $inc ) {
                 $typ = $inc['type'];
-                $pth = !empty($inc['path']) ? self::$pathbase .'/'. $inc['path'] : self::$pathbase;
+                $pth = !empty($inc['path']) ? self::$pathbase .'/'. $inc['path'] : null;
             }
 
             switch ($typ) {
@@ -36,7 +36,7 @@ class Autoloader
 
                 case 'pathfollow':
                 case 'default':
-                    return self::pathfollow($class);
+                    return self::pathfollow($class, $pth);
             }
             
             return false;
@@ -53,11 +53,12 @@ class Autoloader
      * 
      * @return bool
      */
-    static function pathfollow($class) {
+    static function pathfollow($class, $dir=null) {
 
         $isfr = preg_match("#^Framer#", $class);
+        $dir  = $dir ?? ($isfr ? self::$pathbase : (self::$pathbase . '/Vendors/'));
         $file = $isfr ? str_replace('Framer\\', '', $class) : $class;
-        $file = self::$pathbase .'/'. str_replace('\\', DIRECTORY_SEPARATOR, $file).'.php';
+        $file = $dir .'/'. str_replace('\\', DIRECTORY_SEPARATOR, $file).'.php';
         
         if (file_exists($file)) {
             require $file;
@@ -74,8 +75,10 @@ class Autoloader
      * 
      * @return bool
      */
-    public static function classmap($className, $dir=__DIR__)
+    public static function classmap($className, $dir=null)
     {
+
+        $dir = $dir ?? self::$pathbase;
         $directory = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
 
         if (is_null(static::$fileIterator)) {
@@ -92,6 +95,7 @@ class Autoloader
                 break;
             }
         }
+
     }
 
 

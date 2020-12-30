@@ -16,7 +16,6 @@ class DefaultsController extends Controller
      * @return View
      */
     static function index(Query $query) {
-
         view('FramerViews/template', [ "name" => "Framer" ]);
     }
 
