@@ -33,3 +33,9 @@ if ( !function_exists('view') ) {
         View::load($view, $vars, $layout, $useTemplate);
     }
 }
+
+if ( !function_exists('assets') ) {
+    function assets($path) {
+        return uri('Assets/' . $path);
+    }
+}

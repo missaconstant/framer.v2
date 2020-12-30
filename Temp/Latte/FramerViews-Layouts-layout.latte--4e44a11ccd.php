@@ -6,7 +6,7 @@ use Latte\Runtime as LR;
 final class Template4e44a11ccd extends Latte\Runtime\Template
 {
 	protected const BLOCKS = [
-		['content' => 'blockContent'],
+		['childstyle' => 'blockChildstyle', 'content' => 'blockContent'],
 	];
 
 
@@ -20,23 +20,44 @@ final class Template4e44a11ccd extends Latte\Runtime\Template
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            background: #222;
+            background-image: url(\'';
+		echo LR\Filters::escapeCss(assets("images/bg.jpg")) /* line 15 */;
+		echo '\');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
         }
     </style>
-</head>
-<body>
 
     ';
 		if ($this->getParentName()) {
 			return get_defined_vars();
 		}
+		$this->renderBlock('childstyle', get_defined_vars());
+		echo '
+</head>
+<body>
+
+    ';
 		$this->renderBlock('content', get_defined_vars());
 		echo '
 
 </body>
 </html>';
 		return get_defined_vars();
+	}
+
+
+	public function blockChildstyle(array $ʟ_args): void
+	{
+		
 	}
 
 
