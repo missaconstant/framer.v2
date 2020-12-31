@@ -110,7 +110,7 @@ class Session
     static function oldForm() {
 
         if ( empty($key) ) {
-            $vals = Input::input();
+            $vals = Input::$_post;
 
             foreach ( $vals as $k => $v ) {
                 self::flash("old_form_data_$k", $v);
