@@ -38,8 +38,8 @@ class Query
      * @return input value
      * Gets a form input value
      */
-    public function input($name) {
-        return Input::post( $name );
+    public function input($name=null) {
+        return !empty($name) ? Input::post( $name ) : Input::$_post;
     }
 
 

@@ -5,6 +5,13 @@ use Framer\Core\Model\EnvModel;
 use Framer\Core\App\View;
 
 
+if ( !function_exists('dump') ) {
+    function dump($vars, $exit=true) {
+        return Helpers::dump($vars, $exit);
+    }
+}
+
+
 if ( !function_exists('uri') ) {
     function uri($filepath) {
         return Helpers::uri($filepath);

@@ -77,7 +77,7 @@ class Autoloader
      */
     public static function classmap($className, $dir=null)
     {
-
+        
         $dir = $dir ?? self::$pathbase;
         $directory = new RecursiveDirectoryIterator($dir, RecursiveDirectoryIterator::SKIP_DOTS);
 
