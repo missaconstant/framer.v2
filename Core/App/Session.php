@@ -7,6 +7,25 @@ namespace Framer\Core\App;
  */
 class Session
 {
+
+    /** @var array flash datas array */
+    static $flashdatas = [];
+
+
+    /**
+     * Initializing Session class
+     * 
+     * @return void
+     */
+    static function init() {
+
+        # removes all flash
+        self::removeFlash();
+
+        # set old
+        self::oldForm();
+
+    }
     
     /**
      * Set a session index
@@ -60,13 +79,42 @@ class Session
     static function flash($key, $value=null) {
 
         if ( $value !== null ) {
+            self::$flashdatas[$key] = $value;
             return self::set($key, $value);
         }
         else {
             $value = self::get( $key );
+            unset(self::$flashdatas[$key]);
             self::destroy( $key );
 
             return $value;
+        }
+
+    }
+
+
+    /**
+     * Removes all flash datas
+     * 
+     * @return void
+     */
+    static function removeFlash() {
+
+        foreach( self::$flashdatas as $k => $v ) {
+            self::destroy($k);
+        }
+
+    }
+
+
+    static function oldForm() {
+
+        if ( empty($key) ) {
+            $vals = Input::input();
+
+            foreach ( $vals as $k => $v ) {
+                self::flash("old_form_data_$k", $v);
+            }
         }
 
     }

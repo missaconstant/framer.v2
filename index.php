@@ -15,11 +15,15 @@ require_once __DIR__ . '/Autoloader.php';
 use Framer\Core\App\App;
 use Framer\Core\App\Query;
 use Framer\Core\App\Response;
+use Framer\Core\App\Session;
 use Framer\Core\Model\EnvModel;
 use Framer\Core\Exceptions\FramerException;
 
 
 try {
+    # init session
+    Session::init();
+
     # callables
     require_once __DIR__ . '/Core/App/Callables.php';
 

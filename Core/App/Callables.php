@@ -47,3 +47,15 @@ if ( !function_exists('assets') ) {
         return uri('Assets/' . $path);
     }
 }
+
+if ( !function_exists('flash') ) {
+    function flash($key) {
+        return Session::flash($key);
+    }
+}
+
+if ( !function_exists('old') ) {
+    function old($key) {
+        return Session::flash('old_form_data_' . $key);
+    }
+}
