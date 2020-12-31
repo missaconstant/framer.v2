@@ -2,6 +2,8 @@
 
 namespace Framer\Core\App;
 
+use Framer\Core\App\Input;
+
 /**
  * Session class
  */
