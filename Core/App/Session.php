@@ -22,9 +22,6 @@ class Session
      */
     static function init() {
 
-        # removes all flash
-        // self::removeFlash();
-
         # set old
         self::oldForm();
 
@@ -101,7 +98,7 @@ class Session
      * 
      * @return void
      */
-    static function removeFlash() {
+    static function destroyFlash() {
 
         foreach( self::$flashdatas as $k => $v ) {
             self::destroy($k);

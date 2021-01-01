@@ -39,6 +39,8 @@ class App
         # execute route
         $route->getController()::{ $route->getAction() }( $query );
         
+        # destroy session flash datas
+        Session::destroyFlash();
     }
 
 }

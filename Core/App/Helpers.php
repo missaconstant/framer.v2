@@ -107,6 +107,7 @@ class Helpers
      */
     static function redirect($pathorname) {
         header("Location: " . self::route($pathorname));
+        exit();
     }
 
 }
