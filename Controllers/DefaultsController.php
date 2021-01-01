@@ -23,8 +23,14 @@ class DefaultsController extends Controller
 
 
     static function make(Query $query) {
-        Session::setError(["name" => "errors"]);
-        Helpers::redirect('/');
+
+        $book = new \Framer\Models\Book;
+        $book->title = "un livre 2";
+        $book->reading = 0;
+        $book->price = 18;
+
+        var_dump($book->create());
+
     }
 
 }

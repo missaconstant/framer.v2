@@ -31,9 +31,8 @@ class Helpers
     static function stringContainsWord($string, $word) {
 
         # search match words
-        preg_match_all("#" . $word ."[\S]*#", $string, $matches);
-
-        return in_array($word, $matches[0]);
+        $parts = explode($word, $string);
+        return count($parts) > 1 ? true : false;
 
     }
 

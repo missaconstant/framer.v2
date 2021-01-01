@@ -217,7 +217,7 @@ class BaseModel
         $vars = get_object_vars($this);
         unset($vars['__queryDatas']);
 
-        return DbManager::executeQuery($this->compileQuery('add'), $vars);
+        return DbManager::executeQuery($this->compileQuery('add'), $vars, 'INSERT');
     }
 
 
