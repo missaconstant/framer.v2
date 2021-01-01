@@ -45,11 +45,11 @@ class DbManager
      */
     static function executeQuery($queryString, $queryDatas=[], $action=null) {
 
-        $toPrepare = count($queryDatas);
-        $queryDatas = self::sortDatasByQueryString($queryString, $queryDatas);
+        $toPrepare = count($queryDatas ?? []);
+        $queryDatas = self::sortDatasByQueryString($queryString, ($queryDatas ?? []));
 
         try {
-            $query = $toPrepare ? self::$db->prepare($queryString) : self::$db->exec($queryString);
+            $query = $toPrepare ? self::$db->prepare($queryString) : self::$db->{ $action==='DELETE' ? 'exec' : 'query' }($queryString);
             $result = $toPrepare ? $query->execute($queryDatas) : $query;
             $result = $action === 'INSERT' ? self::$db->lastInsertId() : $result;
 

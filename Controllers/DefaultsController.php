@@ -6,6 +6,7 @@ use Framer\Core\App\Controller;
 use Framer\Core\App\Query;
 use Framer\Core\App\Helpers;
 use Framer\Core\App\Session;
+use Framer\Core\App\Response;
 
 class DefaultsController extends Controller
 {
@@ -25,11 +26,12 @@ class DefaultsController extends Controller
     static function make(Query $query) {
 
         $book = new \Framer\Models\Book;
-        $book->title = "un livre 2";
+        $book->id = 14;
+        $book->title = 'Leuk la founie 5';
         $book->reading = 0;
-        $book->price = 18;
+        $book->price = 10.00;
 
-        var_dump($book->create());
+        var_dump($book->delete());
 
     }
 

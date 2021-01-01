@@ -4,6 +4,7 @@ namespace Framer\Core\Model;
 
 use Framer\Core\Model\DbQueryFactory;
 use Framer\Core\Model\DbManager;
+use Framer\Core\Exceptions\FramerException;
 
 class BaseModel
 {
@@ -232,7 +233,12 @@ class BaseModel
         unset($vars['__queryDatas']);
 
         # if id exists add it in where clause
-        !empty($this->id) && $this->where('id=' . $this->id);
+        if ( empty($this->id) ) {
+            throw new FramerException("Specifier l'ID à de l'instance supprimer");
+            return false;
+        }
+
+        $this->where('id=' . $this->id);
 
         # execute the query
         $ok = DbManager::executeQuery(self::compileQuery('set'), $vars);
@@ -249,15 +255,20 @@ class BaseModel
      * @return bool
      */
     public function delete($id=null) {
-
+        
         # fill object id with given id
         $this->id = $id ?? $this->id;
-
+        
         # if id exists add it in where clause
-        !empty($this->id) && $this->where('id=' . $this->id);
+        if ( empty($this->id) ) {
+            throw new FramerException("Specifier l'ID à de l'instance supprimer");
+            return false;
+        }
+
+        $this->where('id=' . $this->id);
 
         # execute the query
-        $ok = DbManager::executeQuery(self::compileQuery('del'));
+        $ok = DbManager::executeQuery(self::compileQuery('del'), null, 'DELETE');
 
         return $ok;
     }
