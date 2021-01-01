@@ -58,6 +58,14 @@ final class Template5c0a9b4463 extends Latte\Runtime\Template
     <h1>HELLO ';
 		echo LR\Filters::escapeHtmlText(($this->filters->upper)($name)) /* line 15 */;
 		echo ' !</h1>
+    <form action="';
+		echo LR\Filters::escapeHtmlAttr(LR\Filters::safeUrl(route('post/make'))) /* line 16 */;
+		echo '" method="post">
+        <input name="name" value="';
+		echo LR\Filters::escapeHtmlAttr(old('name')) /* line 17 */;
+		echo '">
+        <button type="submit">OK</button>
+    </form>
 </div>
 ';
 	}

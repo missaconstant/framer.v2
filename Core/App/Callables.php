@@ -1,6 +1,7 @@
 <?php
 
 use Framer\Core\App\Helpers;
+use Framer\Core\App\Session;
 use Framer\Core\Model\EnvModel;
 use Framer\Core\App\View;
 

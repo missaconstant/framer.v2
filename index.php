@@ -21,9 +21,6 @@ use Framer\Core\Exceptions\FramerException;
 
 
 try {
-    # init session
-    Session::init();
-
     # callables
     require_once __DIR__ . '/Core/App/Callables.php';
 

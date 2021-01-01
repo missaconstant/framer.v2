@@ -18,6 +18,9 @@ class App
      */
     static function start(Query $query) {
 
+        # init session
+        Session::init();
+
         # set the global error handler
         FramerException::handleErrors();
 

@@ -3,6 +3,7 @@
 namespace Framer\Core\App;
 
 use Framer\Core\App\Input;
+use Framer\Core\App\Helpers;
 
 /**
  * Session class
@@ -22,7 +23,7 @@ class Session
     static function init() {
 
         # removes all flash
-        self::removeFlash();
+        // self::removeFlash();
 
         # set old
         self::oldForm();
@@ -50,7 +51,7 @@ class Session
      * @return mixed|false
      */
     static function get($key) {
-        return $_SESSION[ $key ] ?? false;
+        return empty($key) ? $_SESSION : ($_SESSION[ $key ] ?? false);
     }
 
 
@@ -110,10 +111,10 @@ class Session
 
 
     static function oldForm() {
+        
+        $vals = Input::$_post;
 
-        if ( empty($key) ) {
-            $vals = Input::$_post;
-
+        if ( !empty($vals) ) {
             foreach ( $vals as $k => $v ) {
                 self::flash("old_form_data_$k", $v);
             }

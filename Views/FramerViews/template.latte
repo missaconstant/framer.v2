@@ -13,5 +13,9 @@
 {block content}
 <div class="wrapper">
     <h1>HELLO {$name|upper} !</h1>
+    <form action="{route('post/make')}" method="post">
+        <input name="name" value="{old('name')}" />
+        <button type="submit">OK</button>
+    </form>
 </div>
 {/block}

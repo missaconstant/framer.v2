@@ -18,3 +18,4 @@ use Framer\Controllers\DefaultsController;
 
 # route
 Route::get('/', [ DefaultsController::class, 'index' ]);
+Route::post('/post/make', [ DefaultsController::class, 'make' ]);
