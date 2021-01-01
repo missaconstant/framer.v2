@@ -84,9 +84,6 @@ class Session
         }
         else {
             $value = self::get( $key );
-            unset(self::$flashdatas[$key]);
-            self::destroy( $key );
-
             return $value;
         }
 
