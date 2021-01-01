@@ -107,6 +107,11 @@ class Session
     }
 
 
+    /**
+     * Store post datas as old datas in session
+     * 
+     * @return void
+     */
     static function oldForm() {
         
         $vals = Input::$_post;
@@ -115,6 +120,22 @@ class Session
             foreach ( $vals as $k => $v ) {
                 self::flash("old_form_data_$k", $v);
             }
+        }
+
+    }
+
+
+    /**
+     * Store an error in session
+     * 
+     * @param array The error(s)
+     * 
+     * @return void
+     */
+    static function setError($err) {
+
+        foreach ($err as $errname => $errmsg) {
+            self::flash("error_set_$errname", $errmsg);
         }
 
     }

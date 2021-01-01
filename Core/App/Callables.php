@@ -60,3 +60,9 @@ if ( !function_exists('old') ) {
         return Session::flash('old_form_data_' . $key);
     }
 }
+
+if ( !function_exists('error') ) {
+    function error($err) {
+        return Session::flash('error_set_' . $err);
+    }
+}
