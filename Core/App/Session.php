@@ -79,11 +79,10 @@ class Session
     static function flash($key, $value=null) {
 
         if ( $value !== null ) {
-            self::$flashdatas[$key] = $value;
-            return self::set($key, $value);
+            return self::set('flash_' . $key, $value);
         }
         else {
-            $value = self::get( $key );
+            $value = self::get( 'flash_' . $key );
             return $value;
         }
 
@@ -96,9 +95,9 @@ class Session
      * @return void
      */
     static function destroyFlash() {
-
-        foreach( self::$flashdatas as $k => $v ) {
-            self::destroy($k);
+        
+        foreach( $_SESSION as $k => $v ) {
+            if ( preg_match("#^flash#", $k) ) self::destroy($k);
         }
 
     }
