@@ -233,11 +233,11 @@ class BaseModel
 
         # if id exists add it in where clause
         if ( empty($this->id) ) {
-            throw new FramerException("Specifier l'ID à de l'instance supprimer");
+            throw new FramerException("Specifier l'ID de l'instance à mettre à jour.");
             return false;
         }
 
-        $this->where('id=' . $this->id);
+        $this->where('id=:id');
 
         # execute the query
         $ok = DbManager::executeQuery(self::compileQuery('set'), $vars);
@@ -260,7 +260,7 @@ class BaseModel
         
         # if id exists add it in where clause
         if ( empty($this->id) ) {
-            throw new FramerException("Specifier l'ID à de l'instance supprimer");
+            throw new FramerException("Specifier l'ID de l'instance à supprimer");
             return false;
         }
 
