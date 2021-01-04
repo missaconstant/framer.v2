@@ -3,7 +3,6 @@
 namespace Framer\Routes;
 
 use Framer\Core\Router\Route;
-
 use Framer\Controllers\DefaultsController;
 
 
@@ -18,4 +17,5 @@ use Framer\Controllers\DefaultsController;
 
 # route
 Route::get('/', [ DefaultsController::class, 'index' ]);
+Route::get('/list/{add}/{id}/{ot}', [ DefaultsController::class, 'getOne' ]);
 Route::post('/post/make', [ DefaultsController::class, 'make' ]);

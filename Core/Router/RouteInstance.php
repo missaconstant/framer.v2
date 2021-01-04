@@ -12,14 +12,17 @@ class RouteInstance
     private $method; # POST | GET | PUT | DELETE | PATCH
     private $controller;
     private $action;
+    private $params = [];
     public $_onNameGiven = false; # Event
 
     /**
      * @method __constrcuct
-     * constructor
+     * 
      * @param $path - the path
      * @param $controller - the controller
      * @param $action - the action
+     * 
+     * @return RouterInstance
      */
     public function __construct($path, $method, $controller, $action, $name=null) {
 
@@ -85,6 +88,22 @@ class RouteInstance
      */
     public function getMethod() {
         return $this->method;
+    }
+
+    /**
+     * @method getParams
+     * getter
+     */
+    public function getParams() {
+        return $this->params;
+    }
+
+    /**
+     * @method setParams
+     * setter
+     */
+    public function setParams($params) {
+        return $this->params = $params;
     }
 
 }

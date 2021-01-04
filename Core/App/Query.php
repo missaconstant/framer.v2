@@ -12,6 +12,7 @@ class Query
     public $basedir;
     public $method;
     public $headers;
+    public $get;
 
     public function __construct() {
 
@@ -25,6 +26,7 @@ class Query
         $this->basepath = Request::$basepath;
         $this->host = Request::$host;
         $this->headers = Request::$headers;
+        $this->get = [];
 
         # set content type
         Input::setDataType( $this->header('Content-Type') );
@@ -40,6 +42,27 @@ class Query
      */
     public function input($name=null) {
         return !empty($name) ? Input::post( $name ) : Input::$_post;
+    }
+    
+
+    /**
+     * Get params
+     * 
+     * @param string key
+     * @param mixed|null value to set for key
+     * 
+     * @return mixed|void
+     */
+    public function get($valsOrKey) {
+
+        if ( is_array($valsOrKey) ){
+            $this->get = array_merge($this->get, $valsOrKey);
+            return;
+        }
+        else {
+            return $this->get[$valsOrKey] ?? null;
+        }
+
     }
 
 

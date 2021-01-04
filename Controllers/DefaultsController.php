@@ -23,6 +23,11 @@ class DefaultsController extends Controller
     }
 
 
+    static function getOne(Query $query) {
+        Response::json($query->get('add'));
+    }
+
+
     static function make(Query $query) {
 
         $book = new \Framer\Models\Book;

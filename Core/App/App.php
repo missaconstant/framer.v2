@@ -35,6 +35,9 @@ class App
             throw new RouteNotFoundException;
             return;
         }
+
+        # mergin get params to  query object
+        $query->get( $route->getParams() );
         
         # execute route
         $route->getController()::{ $route->getAction() }( $query );
