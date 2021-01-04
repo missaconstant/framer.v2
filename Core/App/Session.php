@@ -108,9 +108,9 @@ class Session
      * 
      * @return void
      */
-    static function oldForm() {
+    static function oldForm($vals=null) {
         
-        $vals = Input::$_post;
+        $vals = $vals ?? Input::$_post;
 
         if ( !empty($vals) ) {
             foreach ( $vals as $k => $v ) {
