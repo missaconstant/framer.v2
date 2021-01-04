@@ -286,7 +286,7 @@ class BaseModel
         $this->id = $id ?? $this->id;
 
         # if id exists add it in where clause
-        !empty($this->id) && $this->where('id=' . $this->id);
+        !empty($this->id) && $this->where($this->__queryDatas['table'] . 'id=' . $this->id);
 
         # get list
         $list = DbManager::executeQuery($this->compileQuery('get'));
