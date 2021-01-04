@@ -44,7 +44,8 @@ class DbQueryFactory
         $sl = [];
 
         foreach ( ($qd['select'] ?? []) as $k => $v ) {
-            $sl[] = preg_match("#[\S]+\.[\S]+#", $v) ? $v : $qd['table'] . '.' . $v;
+            $v = explode(':', $v);
+            $sl[] = preg_match("#[\S]+\.[\S]+#", $v[0]) ? $v[0] : $qd['table'] . '.' . $v .' AS '. ($v[1] ?? $v[0]);
         }
 
 
