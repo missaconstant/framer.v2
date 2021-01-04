@@ -229,8 +229,7 @@ class BaseModel
      */
     public function update() {
 
-        $vars = get_object_vars($this);
-        unset($vars['__queryDatas']);
+        $vars = $this->toArray();
 
         # if id exists add it in where clause
         if ( empty($this->id) ) {
