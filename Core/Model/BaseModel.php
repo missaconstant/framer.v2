@@ -328,4 +328,19 @@ class BaseModel
         return $object;
     }
 
+
+    /**
+     * Convert BaseModel into array
+     * 
+     * @return array
+     */
+    public function toArray() {
+
+        $vars = get_object_vars($this);
+        unset($vars['__queryDatas']);
+
+        return $vars;
+
+    }
+
 }
