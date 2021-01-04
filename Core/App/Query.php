@@ -37,10 +37,21 @@ class Query
     /**
      * @method input
      * @param $name
-     * @return input value
+     * @return mixed value
      * Gets a form input value
      */
     public function input($name=null) {
+        return $this->post($name);
+    }
+
+
+    /**
+     * @method post
+     * @param $name
+     * @return input value
+     * Gets a form post value
+     */
+    public function post($name=null) {
         return !empty($name) ? Input::post( $name ) : Input::$_post;
     }
     
