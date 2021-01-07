@@ -311,7 +311,7 @@ class BaseModel
 
 
     public function getFirst() {
-        return $this->limit([0, 1])->get();
+        return $this->limit([0, 1])->get()[0] ?? null;
     }
 
 
