@@ -310,6 +310,11 @@ class BaseModel
     }
 
 
+    public function getFirst() {
+        return $this->limit([0, 1])->get();
+    }
+
+
     /**
      * Fills object from given values
      * 
