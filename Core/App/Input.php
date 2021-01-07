@@ -22,7 +22,7 @@ class Input
      * @param $name
      */
     static function post($name, $secure=true) {
-        return $secure ? htmlspecialchars(htmlentities(self::$_post[ $name ])) : self::$_post[ $name ];
+        return $secure ? htmlspecialchars(self::$_post[ $name ]) : self::$_post[ $name ];
     }
 
     /**
