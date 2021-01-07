@@ -62,9 +62,9 @@ class RouterStack
                 $n = $matches[1] ?? [];
 
                 # replacing {xy} by regexp
-                $k = preg_replace("#\{[a-z]+\}#", "([\S\s]+)", $k);
+                $k = preg_replace("#\{[a-z]+\}#", "([\S\s]+)", $k) . '__';
                 
-                if ( preg_match_all("#^$k$#", $path, $matches_2) ) {
+                if ( preg_match_all("#^$k$#", ($path . '__'), $matches_2) ) {
                     $islonger = false;
 
                     for ( $i=0; $i<count($n); $i++ ) {
@@ -82,7 +82,8 @@ class RouterStack
 
                     $item = $islonger ? null : $v;
                     !empty($item) && $item[$method]->setParams($parm);
-                    break;
+
+                    if ($item) break;
                 }
             }
         }
