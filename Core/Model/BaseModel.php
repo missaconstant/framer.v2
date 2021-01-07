@@ -178,6 +178,7 @@ class BaseModel
      */
     public function limit($limit) {
         $this->__queryDatas['limit'] = $limit;
+        return $this;
     }
 
 
