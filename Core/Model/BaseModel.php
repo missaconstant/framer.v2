@@ -77,6 +77,7 @@ class BaseModel
      * Where to search
      * 
      * @param string where string
+     * @param string sign
      * 
      * @return BaseModel
      */
@@ -88,6 +89,21 @@ class BaseModel
         ];
 
         return $this;
+    }
+
+
+    /**
+     * Reinitialize all where clause and starts by a new one
+     * 
+     * @param string where string
+     * @param sting sign
+     * 
+     * @return BaseModel
+     */
+    public function dropWhere($wherestring, $sign='AND') {
+
+        $this->__queryDatas['where'] = [];
+        return $this->where($wherestring, $sign);
     }
 
 
