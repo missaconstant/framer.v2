@@ -11,18 +11,36 @@ class Input
      * @method setDataType
      * @param $type - content type
      */
-    static function setDataType($type='urlencoded') {
-        $type = preg_match("#json#", $type) ? 'json' : 'urlencoded';
-        self::$_post = $type === 'json' ? file_get_contents('php://input') : $_POST;
+    static function setDataType($type='urlencoded', $method='') {
+
+        self::$_post = $type === 'json' ? json_decode(file_get_contents('php://input')) : $_POST;
+        self::$_post = $type === 'put' ? (function () {
+            (object) parse_str(file_get_contents('php://input'), $putDatas);
+            return $putDatas;
+        })() : $_POST;
         self::$_files = $_FILES;
+
     }
 
     /**
      * @method post
      * @param $name
+     * @param $secure
      */
-    static function post($name, $secure=true) {
-        return $secure ? htmlspecialchars(self::$_post[ $name ]) : self::$_post[ $name ];
+    static function post($name=null, $secure=true) {
+        return $name ? ($secure ? htmlspecialchars(self::$_post[ $name ]) : self::$_post[ $name ]) : self::$_post;
+    }
+
+    /**
+     * @method put
+     * @param $name
+     * @param $secure
+     */
+    static function put($name=null, $secure=true) {
+
+        self::setDataType('put');
+        return self::post($name, $secure);
+
     }
 
     /**

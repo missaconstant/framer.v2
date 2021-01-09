@@ -41,7 +41,7 @@ class Query
      * Gets a form input value
      */
     public function input($name=null) {
-        return $this->post($name);
+        return $this->{ $this->method }($name);
     }
 
 
@@ -52,7 +52,18 @@ class Query
      * Gets a form post value
      */
     public function post($name=null) {
-        return !empty($name) ? Input::post( $name ) : Input::$_post;
+        return Input::post( $name );
+    }
+
+
+    /**
+     * @method post
+     * @param $name
+     * @return input value
+     * Gets a form post value
+     */
+    public function put($name=null) {
+        return Input::put( $name );
     }
     
 
