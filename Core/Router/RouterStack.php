@@ -58,11 +58,11 @@ class RouterStack
 
             foreach ( self::$stack as $k => $v ) {
                 # getting GET keys
-                $n = preg_match_all("#\{([a-z]+)\}#", $k, $matches);
+                $n = preg_match_all("#\{([a-z]+)\}#i", $k, $matches);
                 $n = $matches[1] ?? [];
 
                 # replacing {xy} by regexp
-                $k = preg_replace("#\{[a-z]+\}#", "([\S\s]+)", $k) . '__';
+                $k = preg_replace("#\{[a-z]+\}#i", "([\S\s]+)", $k) . '__';
                 
                 if ( preg_match_all("#^$k$#", ($path . '__'), $matches_2) ) {
                     $islonger = false;
