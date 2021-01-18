@@ -38,7 +38,7 @@ if ( !function_exists('redirect') ) {
 }
 
 if ( !function_exists('view') ) {
-    function view($viewpath, $vars=null, $layout=null) {
+    function view($viewpath, $vars=[], $layout=null) {
         View::load($viewpath, $vars, $layout, EnvModel::get('engine'));
     }
 }
