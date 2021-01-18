@@ -18,7 +18,7 @@ class View
      * 
      * @return void
      */
-    static function load($viewpath, $vars=null, $layout=null, $useTemplate='default') {
+    static function load($viewpath, $vars=[], $layout=null, $useTemplate='default') {
     
         switch ( $useTemplate ) {
             case 'latte':
