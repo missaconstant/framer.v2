@@ -2,4 +2,4 @@ Controllers/
 Models/
 Configs/.env
 Configs/autoloader.json
-Routes/WebRoutes.php
+Routes/
