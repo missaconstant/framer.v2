@@ -39,7 +39,12 @@ class App
         # mergin get params to  query object
         $query->get( $route->getParams() );
         
-        # execute route
+        # execute route middlewares
+        foreach ($route->getMiddleWares() as $k => $middleware) {
+            $middleware::run( $query );
+        }
+
+        # execute route action
         $route->getController()::{ $route->getAction() }( $query );
         
         # destroy session flash datas

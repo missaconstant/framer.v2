@@ -12,6 +12,7 @@ class RouteInstance
     private $method; # POST | GET | PUT | DELETE | PATCH
     private $controller;
     private $action;
+    private $middlewares = [];
     private $params = [];
     public $_onNameGiven = false; # Event
 
@@ -51,6 +52,14 @@ class RouteInstance
     }
 
     /**
+     * @method middleware
+     * add middleware to route
+     */
+    public function middleware($middleware) {
+        $this->middlewares[] = $middleware;
+    }
+
+    /**
      * @method getName
      * getter
      */
@@ -72,6 +81,14 @@ class RouteInstance
      */
     public function getAction() {
         return $this->action;
+    }
+
+    /**
+     * @method getMiddleWares
+     * getter
+     */
+    public function getMiddlewares() {
+        return $this->middlewares;
     }
 
     /**

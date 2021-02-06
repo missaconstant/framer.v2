@@ -4,6 +4,7 @@ namespace Framer\Routes;
 
 use Framer\Core\Router\Route;
 use Framer\Controllers\DefaultsController;
+use Framer\Middlewares\DefaultsMiddleware;
 
 
 /**
@@ -16,6 +17,6 @@ use Framer\Controllers\DefaultsController;
 
 
 # route
-Route::get('/', [ DefaultsController::class, 'index' ]);
+Route::get('/', [ DefaultsController::class, 'index' ])/*->middleware(DefaultsMiddleware::class)*/;
 Route::get('/list/{add}/{id}/{ot}', [ DefaultsController::class, 'getOne' ]);
-Route::post('/post/make', [ DefaultsController::class, 'make' ]);
+Route::get('/post/make', [ DefaultsController::class, 'make' ]);

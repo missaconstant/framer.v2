@@ -28,10 +28,27 @@ class DbManager
             self::$db->exec("set names utf8");
         }
         catch (\Throwable $th) {
-            throw new DbException($th->getMessage());
+            // throw new DbException($th->getMessage());
         }
 
         return self::$db;
+    }
+
+
+    /**
+     * Check if db instance is setted
+     * 
+     * @return boolean
+     */
+    static function isDb($throwError) {
+        $isdb = !empty(self::$db);
+
+        if (!$isdb && $throwError) {
+            throw new DbException("Database connexion failed !");
+            exit();
+        }
+        
+        return $isdb;
     }
 
 
@@ -44,6 +61,8 @@ class DbManager
      * @return mixed query result
      */
     static function executeQuery($queryString, $queryDatas=[], $action=null) {
+
+        self::isDb(true);
 
         $toPrepare = count($queryDatas ?? []);
         $queryDatas = self::sortDatasByQueryString($queryString, ($queryDatas ?? []));
