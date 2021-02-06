@@ -20,3 +20,4 @@ use Framer\Middlewares\DefaultsMiddleware;
 Route::get('/', [ DefaultsController::class, 'index' ])/*->middleware(DefaultsMiddleware::class)*/;
 Route::get('/list/{add}/{id}/{ot}', [ DefaultsController::class, 'getOne' ]);
 Route::get('/post/make', [ DefaultsController::class, 'make' ]);
+echo '';
