@@ -52,7 +52,8 @@ class Request
 
         # when online: means not in php internal server
         if ( isset($_SERVER['BASE']) ) {
-            $uri = '/' . str_replace(Helpers::removeDoubleSlash($_SERVER['BASE']), '', Helpers::removeDoubleSlash($_SERVER['REQUEST_URI']));
+            $base = $_SERVER['BASE'] === '/' ? '' : $_SERVER['BASE'];
+            $uri = '/' . str_replace(Helpers::removeDoubleSlash($base), '', Helpers::removeDoubleSlash($_SERVER['REQUEST_URI']));
         }
         # if in
         else {
