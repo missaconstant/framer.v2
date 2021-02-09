@@ -18,6 +18,18 @@ class Helpers
     static function removeDoubleSlash($string) {
         return preg_replace("#[/]+#", '/', $string);
     }
+    
+    /**
+     * Removes last slashe from string
+     * 
+     * @param string - string containing slashe at end
+     * 
+     * @return string
+     */
+    static function removeEndSlash($string) {
+        $isendslash = $string[ strlen($string) - 1 ] == '/';
+        return strlen($string) > 1 && $isendslash ? substr($string, 0, strlen($string) - 1) : $string;
+    }
 
 
     /**

@@ -65,7 +65,7 @@ class Request
             }
         }
 
-        return Helpers::removeDoubleSlash($uri);
+        return Helpers::removeEndSlash(Helpers::removeDoubleSlash($uri));
     }
 
 
