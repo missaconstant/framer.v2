@@ -13,7 +13,7 @@ class Input
      */
     static function setDataType($type='urlencoded', $method='') {
 
-        self::$_post = $type === 'json' ? json_decode(file_get_contents('php://input')) : $_POST;
+        self::$_post = preg_match("#json#", $type) ? json_decode(file_get_contents('php://input')) : $_POST;
         self::$_post = $type === 'put' ? (function () {
             (object) parse_str(file_get_contents('php://input'), $putDatas);
             return $putDatas;
