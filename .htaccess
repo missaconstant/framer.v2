@@ -174,8 +174,8 @@
 	RewriteRule ^ http%1://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 	
 	# Add slash if there is no at the end
-	RewriteCond %{REQUEST_URI} !(/$|\.) 
-	RewriteRule (.*) %{REQUEST_URI}/ [R=301,L]
+	#RewriteCond %{REQUEST_URI} !(/$|\.) 
+	#RewriteRule (.*) %{REQUEST_URI}/ [R=301,L]
 	
 	# Remove double slashes in all URLs
 	RewriteCond %{THE_REQUEST} ^[A-Z]+\ /(([^/\ ]+/)*)/+([^\ ]*)
@@ -187,7 +187,7 @@
 	
 	# Redirect to URI without front controller to prevent duplicate content
 	RewriteCond %{ENV:REDIRECT_STATUS} ^$
-	RewriteRule ^app\.php(/(.*)|$) %{ENV:BASE}/$2 [R=301,L]
+	RewriteRule ^index\.php(/(.*)|$) %{ENV:BASE}/$2 [R=301,L]
 	
 	# If the requested filename exists, simply serve it.
 	RewriteCond %{REQUEST_FILENAME} -f
