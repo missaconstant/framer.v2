@@ -40,12 +40,16 @@ class App
         $query->get( $route->getParams() );
         
         # execute route middlewares
+        $middlewareReturns = [];
+
         foreach ($route->getMiddleWares() as $k => $middleware) {
-            $middleware::run( $query );
+            $r = $middleware::run( $query );
+            $r && array_merge($middlewareReturns, $r);
         }
 
         # execute route action
-        $route->getController()::{ $route->getAction() }( $query );
+        # passign queryObject and middlewares answers
+        $route->getController()::{ $route->getAction() }( $query, (object) $middlewareReturns );
         
         # destroy session flash datas
         Session::destroyFlash();

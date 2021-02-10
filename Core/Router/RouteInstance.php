@@ -56,7 +56,7 @@ class RouteInstance
      * add middleware to route
      */
     public function middleware($middleware) {
-        $this->middlewares[] = $middleware;
+        array_merge( $this->middlewares, is_array($middlewares) ? $middleware : [$middleware] );
     }
 
     /**
