@@ -2,9 +2,10 @@
 
 namespace Framer\Core\Model;
 
-use Framer\Core\Model\DbQueryFactory;
 use Framer\Core\Model\DbManager;
+use Framer\Core\Model\DbQueryFactory;
 use Framer\Core\Exceptions\FramerException;
+use Framer\Core\Useful\Classes\ObjectCollection;
 
 class BaseModel
 {
@@ -137,6 +138,20 @@ class BaseModel
     public function orWhere($wherestring) {
 
         $this->where($wherestring, 'OR');
+        return $this;
+
+    }
+
+    /**
+     * Group datas
+     * 
+     * @param string field to group on
+     * 
+     * @return BaseModel
+     */
+    public function groupBy($field) {
+
+        $this->__queryDatas['groupby'] = $field;
         return $this;
 
     }
@@ -317,7 +332,7 @@ class BaseModel
         !empty($this->id) && $this->fill($this, $list[0] ?? []);
 
         # collection
-        $collection = [];
+        $collection = new ObjectCollection;
 
         if ( empty($this->id) ) {
             $class = get_class($this);

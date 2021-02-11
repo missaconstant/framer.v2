@@ -15,15 +15,20 @@ class DbQueryFactory
      * 
      * @return string where clause
      */
-    static function compileWhere($qd_where=null) {
+    static function compileWhere($qd_where=null, $qd_groupby=null) {
         $wh = [];
+        $gr = '';
 
+        # conditions
         foreach ( ($qd_where ?? []) as $k => $v ) {
             $v = (object) $v;
             $wh[] = $v->sgn . ' ' . $v->str;
         }
 
-        return count($wh) ? 'WHERE ' . implode(' ', $wh) : '';
+        # group by
+        $gr = $qd_groupby ? " GROUP BY $qd_groupby" : '';
+
+        return (count($wh) ? 'WHERE ' . implode(' ', $wh) : '') . $gr;
     }
 
 
@@ -45,7 +50,8 @@ class DbQueryFactory
 
         foreach ( ($qd['select'] ?? []) as $k => $v ) {
             $v = explode(':', $v);
-            $sl[] = preg_match("#[\S]+\.[\S]+#", $v[0]) ? $v[0] : $qd['table'] . '.' . $v[0] . (isset($v[1]) ? ' AS ' . $v[1] : '');
+            $prefix = preg_match("#[\S]+\.[\S]+#", $v[0]) || preg_match("#^[\S]+\([\S]+\)$#", $v[0]) ? '' : $qd['table'] . '.';
+            $sl[] = ($prefix . $v[0]) . (isset($v[1]) ? ' AS ' . $v[1] : '');
         }
 
 
@@ -76,7 +82,7 @@ class DbQueryFactory
 
 
         # PART 3: Where
-        $wh = self::compileWhere($qd['where']);
+        $wh = self::compileWhere( $qd['where'], ($qd['groupby'] ?? null) );
 
 
         # PART 4: order
@@ -89,7 +95,7 @@ class DbQueryFactory
 
         # LAST PART: compile whole string
         $qs = $sl . ' FROM ' .$qd['table'] . ' ' . implode(' ', $jns) . ' ' . $wh . ' ' . $od . ' ' . $lt;
-
+        
         return $qs;
     }
 

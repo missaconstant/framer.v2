@@ -2,9 +2,10 @@
 
 namespace Framer\Core\Model;
 
+use Framer\Core\App\Helpers;
 use Framer\Core\Model\EnvModel;
 use Framer\Core\Exceptions\DbException;
-use Framer\Core\App\Helpers;
+use Framer\Core\Useful\Classes\ObjectCollection;
 
 class DbManager
 {
@@ -72,7 +73,12 @@ class DbManager
             $result = $toPrepare ? $query->execute($queryDatas) : $query;
             $result = $action === 'INSERT' ? self::$db->lastInsertId() : $result;
 
-            return is_object($result) ? $result->fetchAll(\PDO::FETCH_OBJ) : $result;
+            $return = is_object($result) ? 
+                        new ObjectCollection($result->fetchAll(\PDO::FETCH_OBJ))
+                        :
+                        $result;
+
+            return $return;
         }
         catch (\Throwable $th) {
             throw new DbException($th->getMessage());
