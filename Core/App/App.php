@@ -44,7 +44,7 @@ class App
 
         foreach ($route->getMiddleWares() as $k => $middleware) {
             $r = $middleware::run( $query );
-            $r && array_merge($middlewareReturns, $r);
+            $middlewareReturns = $r ? array_merge($middlewareReturns, $r) : $middlewareReturns;
         }
 
         # execute route action
