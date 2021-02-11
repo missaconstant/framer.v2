@@ -14,14 +14,14 @@ class ObjectCollection extends \ArrayObject {
      * 
      * @return Array
      */
-    public function toNativeArray() {
+    public function toArray() {
         $nativeArray = new \ArrayObject;
 
         foreach ($this as $k => $object) {
             $nativeArray->append( get_object_vars($object) );
         }
 
-        return $nativeArray;
+        return $nativeArray->getArrayCopy();
     }
 
 }
