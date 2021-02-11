@@ -66,6 +66,11 @@ class BaseModel
      */
     public function select($selection) {
 
+        # remove the first (*)
+        if ( $this->__queryDatas['select'][0] === '*' ) {
+            unset($this->__queryDatas['select'][0]);
+        }
+
         $datas = is_string($selection) ? explode(',', $selection) : $selection;
         $this->__queryDatas['select'] = array_merge($this->__queryDatas['select'], $datas);
 
