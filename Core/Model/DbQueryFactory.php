@@ -69,7 +69,7 @@ class DbQueryFactory
             foreach ( ($v->select ?? []) as $kk => $field ) {
                 $select = explode(':', $field);
                 $slc[] = count($select) > 1 ? 
-                    $v->table .'.'. $select[0] .' AS '. $select[1]
+                    (preg_match("#^[\S]+\([\S]+\)$#", $v[0]) ? '' : $v->table .'.') . $select[0] .' AS '. $select[1]
                 :
                     $v->table .'.'. $select[0] .' AS '. $v->table .'_'. $select[0]
                 ;
