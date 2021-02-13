@@ -219,6 +219,25 @@ class BaseModel
 
 
     /**
+     * Limits query result by some ranges
+     * 
+     * @param int page
+     * @param int length
+     * 
+     * @return void
+     */
+    public function paginate($page, $length=10) {
+
+        $from = (($page - 1) * $length);
+        $to = $from + $length;
+
+        $this->__queryDatas['limit'] = "$from, $to";
+        return $this;
+
+    }
+
+
+    /**
      * Compile query string from Query datas
      * 
      * @param string action to do
