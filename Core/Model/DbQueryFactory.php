@@ -49,7 +49,7 @@ class DbQueryFactory
         $sl = [];
 
         foreach ( ($qd['select'] ?? []) as $k => $v ) {
-            $v = explode(':', $v);
+            $v = explode(':', trim($v));
             $prefix = preg_match("#[\S]+\.[\S]+#", $v[0]) || preg_match("#^[\S]+\([\S]+\)$#", $v[0]) ? '' : $qd['table'] . '.';
             $sl[] = ($prefix . $v[0]) . (isset($v[1]) ? ' AS ' . $v[1] : '');
         }

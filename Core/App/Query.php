@@ -26,7 +26,7 @@ class Query
         $this->basepath = Request::$basepath;
         $this->host = Request::$host;
         $this->headers = Request::$headers;
-        $this->get = [];
+        $this->get = $_GET;
 
         # set content type
         Input::setDataType( $this->header('Content-Type') );
@@ -75,13 +75,16 @@ class Query
      * 
      * @return mixed|void
      */
-    public function get($valsOrKey) {
+    public function get($valsOrKey=null) {
 
         if ( is_array($valsOrKey) ){
             $this->get = array_merge($this->get, $valsOrKey);
             return;
         }
-        else {
+        else if ( is_null($valsOrKey) ) {
+            return $this->get;
+        }
+        else if ( is_string($valsOrKey) ) {
             return $this->get[$valsOrKey] ?? null;
         }
 
