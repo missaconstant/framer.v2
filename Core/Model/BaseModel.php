@@ -229,9 +229,8 @@ class BaseModel
     public function paginate($page, $length=10) {
 
         $from = (($page - 1) * $length);
-        $to = $from + $length;
 
-        $this->__queryDatas['limit'] = "$from, $to";
+        $this->__queryDatas['limit'] = "$from, $length";
         return $this;
 
     }
