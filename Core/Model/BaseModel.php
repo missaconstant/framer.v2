@@ -96,7 +96,9 @@ class BaseModel
         }
         else if (is_array($wherestring)) {
             foreach ($wherestring as $k => $string) {
-                $finalString[] = count($string) > 1 ? $string[0] .' '. $string[1] : $string[0];
+                if ( $string ) {
+                    $finalString[] = count($string) > 1 ? $string[0] .' '. $string[1] : $string[0];
+                }
             }
         }
 
