@@ -89,8 +89,21 @@ class BaseModel
      */
     public function where($wherestring, $sign='AND') {
 
+        $finalString = [];
+
+        if ( is_string($wherestring) ) {
+            $finalString[] = $wherestring;
+        }
+        else if (is_array($wherestring)) {
+            foreach ($wherestring as $k => $string) {
+                $finalString[] = count($string) > 1 ? $string[0] .' '. $string[1] : $string[0];
+            }
+        }
+
+        $finalString = implode(' ', $finalString);
+
         $this->__queryDatas['where'][] = [
-            "str" => $wherestring,
+            "str" => is_array($wherestring) ? "($finalString)" : $finalString,
             "sgn" => count($this->__queryDatas['where'] ?? []) === 0 ? '' : $sign
         ];
 
