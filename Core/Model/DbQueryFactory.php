@@ -86,7 +86,15 @@ class DbQueryFactory
 
 
         # PART 4: order
-        $od = isset($qd['order']) ? 'ORDER BY ' . $qd['order']['by'] . ' ' . $qd['order']['way'] : '';
+        $od = [];
+
+        if ( isset($qd['order']) ) {
+            foreach($qd['order'] as $k => $one) {
+                $od[] = $one['by'] . ' ' . $one['way'];
+            }
+        }
+
+        $od = isset($qd['order']) ? 'ORDER BY ' . implode(',', $od) : '';
 
 
         # PART 5: limit

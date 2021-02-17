@@ -182,7 +182,7 @@ class BaseModel
      */
     public function order($field, $way='ASC') {
 
-        $this->__queryDatas['order'] = [ "by" => $field, "way" => $way ];
+        $this->__queryDatas['order'][] = [ "by" => $field, "way" => $way ];
         return $this;
 
     }
