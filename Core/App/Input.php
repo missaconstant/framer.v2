@@ -48,8 +48,8 @@ class Input
      * @method file
      * @param $name
      */
-    static function file($name) {
-        return self::$_files[ $name ];
+    static function file($name=null) {
+        return $name ? self::$_files[ $name ] : self::$_files;
     }
 
 }

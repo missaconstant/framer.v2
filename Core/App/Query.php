@@ -57,13 +57,24 @@ class Query
 
 
     /**
-     * @method post
+     * @method put
      * @param $name
      * @return input value
      * Gets a form post value
      */
     public function put($name=null) {
         return Input::put( $name );
+    }
+
+
+    /**
+     * @method file
+     * @param $name
+     * @return input value
+     * Gets a form post value
+     */
+    public function file($name=null) {
+        return Input::file( $name );
     }
     
 
