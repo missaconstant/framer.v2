@@ -16,7 +16,6 @@ class Request
     static $host;
     static $basehost;
     static $headers;
-    static $query_params;
     static $inited;
 
 
@@ -38,7 +37,6 @@ class Request
         self::$host = self::setHost();
         self::$basehost = self::setBaseHost();
         self::$headers = getallheaders();
-        self::$query_params = $_GET;
         self::$inited = true;
 
     }
@@ -68,7 +66,9 @@ class Request
         }
 
         # remove query string part
-        $ignoreQueryString && preg_replace("#\?[\s\S]+$#", "", $uri);
+        if ($ignoreQueryString) {
+            $uri = preg_replace("#\?[\s\S]+$#", "", $uri);
+        }
 
         return Helpers::removeEndSlash(Helpers::removeDoubleSlash($uri));
     }
