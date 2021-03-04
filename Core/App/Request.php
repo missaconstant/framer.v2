@@ -16,6 +16,7 @@ class Request
     static $host;
     static $basehost;
     static $headers;
+    static $query_params;
     static $inited;
 
 
@@ -37,6 +38,7 @@ class Request
         self::$host = self::setHost();
         self::$basehost = self::setBaseHost();
         self::$headers = getallheaders();
+        self::$query_params = $_GET;
         self::$inited = true;
 
     }
@@ -47,7 +49,7 @@ class Request
      * 
      * @return string the correct uri
      */
-    static function setURI() {
+    static function setURI($ignoreQueryString=true) {
         $uri = '';
 
         # when online: means not in php internal server
@@ -64,6 +66,9 @@ class Request
                 $uri = '/';
             }
         }
+
+        # remove query string part
+        $ignoreQueryString && preg_replace("#\?[\s\S]+$#", "", $uri);
 
         return Helpers::removeEndSlash(Helpers::removeDoubleSlash($uri));
     }
