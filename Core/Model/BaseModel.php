@@ -350,7 +350,7 @@ class BaseModel
      * 
      * @return collection
      */
-    public function get($id=null) {
+    public function get($id=null, $toArray=false) {
 
         # fill object id with given id
         $this->id = $id ?? $this->id;
@@ -375,7 +375,7 @@ class BaseModel
             }
         }
 
-        return !empty($this->id) ? (count($list) ? $this : false) : $collection;
+        return !empty($this->id) ? (count($list) ? $this : false) : ($toArray ? $collection->toArray() : $collection);
 
     }
 
