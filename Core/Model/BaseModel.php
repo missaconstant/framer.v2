@@ -197,10 +197,10 @@ class BaseModel
      * 
      * @return BaseModel
      */
-    public function join($what, $on, $takes=[]) {
+    public function join($what, $on, $takes=[], $type="LEFT JOIN") {
 
         # adding join to queryDatas
-        $this->__queryDatas['join'][] = [ "table" => $what, "chain" => $on, "select" => $takes ];
+        $this->__queryDatas['join'][] = [ "table" => $what, "chain" => $on, "select" => $takes, "type"  => $type ];
 
         return $this;
 

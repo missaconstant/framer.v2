@@ -63,7 +63,7 @@ class DbQueryFactory
             $v = (object) $v;
 
             # add joinning
-            $jns[] = 'LEFT JOIN ' . $v->table .' ON '. $v->chain;
+            $jns[] = $v->type . ' ' . $v->table .' ON '. $v->chain;
 
             # add fields to take from joinning
             foreach ( ($v->select ?? []) as $kk => $field ) {
