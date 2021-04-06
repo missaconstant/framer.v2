@@ -1,0 +1,68 @@
+<?php
+
+namespace Framer;
+
+define('DEFAULT_PORT', 9000);
+
+if ( php_sapi_name() === 'cli' ) {
+    # serving array
+    $serving = [
+        "port" => "-S localhost:9000"
+    ];
+
+    # getting cli params
+    $params = $argv;
+
+    # remove framer from params
+    if ( $params[0] === 'framer' ) {
+        $params = array_slice($params, 1);
+    }
+
+    # bulding server array
+    foreach ( $params as $k => $option ) {
+        # get the next param
+        $next = $params[$k + 1] ?? null;
+
+        switch ( $option ) {
+            case '-p':
+            case '--port':
+                $serving['port'] = "-S 0.0.0.0:" . ($next ?? DEFAULT_PORT);
+                break;
+
+            case '--dev':
+            case '--share':
+                $serving['iptype'] = $option === '--dev' ? 'localhost' : '0.0.0.0';
+                $serving['port'] = "-S " . $serving['iptype'] . ":" . explode(':', $serving['port'])[1];
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    }
+
+    # building query string
+    $strings = [];
+
+    # before, remove some stuffs
+    unset($serving['iptype']);
+
+    foreach ( $serving as $k => $string ) {
+        $strings[] = $string;
+    }
+
+    $strings = implode(' ', $strings);
+
+    # ehco all
+    echo "\033[96m=========== <FRAMER> =============\033[39m\n\n";
+    echo "\033[96mBuit-in server started ...\033[39m\n";
+    echo "\033[39mListening on\033[1m\033[96m". str_replace('-S', '', str_replace(':', " \033[0mport\033[1m\033[96m ", $serving['port'])) ."\033[0m ...\033[39m\n";
+    echo "\n\033[96m=========== </FRAMER> ============\033[39m\n";
+    
+    # then execute
+    exec( "php $strings" );
+
+}
+else {
+    header('location: /');
+}
