@@ -17,7 +17,7 @@ class Query
 
         $this->scriptname = Request::$scriptname;
         $this->method = Request::$method;
-        $this->uri = str_replace($uribase, "/", Request::$uri);
+        $this->uri = Helpers::removeDoubleSlash(str_replace($uribase, "/", Request::$uri));
         $this->basedir = Request::$basedir;
         $this->basepath = Request::$basepath;
         $this->host = Request::$host;
