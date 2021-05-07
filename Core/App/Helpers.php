@@ -65,6 +65,23 @@ class Helpers
 
 
     /**
+     * Dump variable in json
+     * 
+     * @param mixed - variable to json dump
+     * 
+     * @return void
+     */
+    static function json_dump($var, $exit=false) {
+
+        !is_array($var) && !is_object($var) && exit('Not jsonnizable');
+
+        echo json_encode($var);
+        $exit && exit();
+
+    }
+
+
+    /**
      * Get route from path or name
      * 
      * @param string the path or name

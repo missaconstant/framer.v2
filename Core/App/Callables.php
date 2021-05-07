@@ -12,6 +12,12 @@ if ( !function_exists('dump') ) {
     }
 }
 
+if ( !function_exists('json_dump') ) {
+    function json_dump($vars, $exit=true) {
+        return Helpers::json_dump($vars, $exit);
+    }
+}
+
 
 if ( !function_exists('uri') ) {
     function uri($filepath) {
