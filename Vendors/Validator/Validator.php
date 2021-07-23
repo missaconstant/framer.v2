@@ -547,9 +547,9 @@ class Validator {
         	
             // If an array is callable, it is a method
             if (is_array($callback)) {
-                $func = new ReflectionMethod($callback[0], $callback[1]);
+                $func = new \ReflectionMethod($callback[0], $callback[1]);
             } else {
-                $func = new ReflectionFunction($callback);
+                $func = new \ReflectionFunction($callback);
             }
 
             if (!empty($func)) {
