@@ -3,3 +3,7 @@ Models/
 Configs/.env
 Configs/autoloader.json
 Routes/
+Assets/
+Middlewares/
+Temp/
+Vendors/
