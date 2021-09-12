@@ -7,8 +7,8 @@ use Framer\Core\App\View;
 
 
 if ( !function_exists('dump') ) {
-    function dump($vars, $exit=true) {
-        return Helpers::dump($vars, $exit);
+    function dump($vars, $exit=true, $toformat=false) {
+        return Helpers::dump($vars, $exit, $toformat);
     }
 }
 
