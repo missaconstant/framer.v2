@@ -12,6 +12,7 @@ class Query
     public $method;
     public $headers;
     public $get;
+    public $originalURI;
 
     public function __construct($uribase='/') {
 

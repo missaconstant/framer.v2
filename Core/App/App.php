@@ -38,6 +38,7 @@ class App
 
         # mergin get params to  query object
         $query->get( $route->getParams() );
+        $query->originalURI = $route->getPath();
         
         # execute route middlewares
         $middlewareReturns = [];
