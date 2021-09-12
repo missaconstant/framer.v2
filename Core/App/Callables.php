@@ -55,6 +55,13 @@ if ( !function_exists('assets') ) {
     }
 }
 
+if ( !function_exists('f_session') ) {
+    function f_session($key, $value=null) {
+        if ($value) Session::set($key, $value);
+        else { return Session::get($key); }
+    }
+}
+
 if ( !function_exists('flash') ) {
     function flash($key) {
         return Session::flash($key);
