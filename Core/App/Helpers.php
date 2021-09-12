@@ -56,9 +56,18 @@ class Helpers
      * 
      * @return void
      */
-    static function dump($var, $exit=false) {
+    static function dump($var, $exit=false, $toformat=false) {
 
-        var_dump($var);
+        switch ($toformat) {
+            case 'json':
+                echo json_encode($var);
+                break;
+
+            default:
+                var_dump($var);
+                break;
+        }
+
         $exit && exit();
 
     }
