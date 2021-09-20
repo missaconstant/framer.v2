@@ -62,10 +62,11 @@ class BaseModel
      * Add selection to query
      * 
      * @param array|string selection
+     * @param bool drop
      * 
      * @return ModelBase
      */
-    public function select($selection) {
+    public function select($selection, $drop=false) {
 
         # remove the first (*)
         if ( $this->__queryDatas['select'][0] === '*' ) {
@@ -73,7 +74,7 @@ class BaseModel
         }
 
         $datas = is_string($selection) ? explode(',', $selection) : $selection;
-        $this->__queryDatas['select'] = array_merge($this->__queryDatas['select'], $datas);
+        $this->__queryDatas['select'] = !$drop ? array_merge($this->__queryDatas['select'], $datas) : $datas;
 
         return $this;
     }

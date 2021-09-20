@@ -63,6 +63,10 @@ class Helpers
                 echo json_encode($var);
                 break;
 
+            case 'text':
+                print_r($var);
+                break;
+
             default:
                 var_dump($var);
                 break;
