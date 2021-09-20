@@ -209,6 +209,20 @@ class BaseModel
 
 
     /**
+     * Drop joins datas
+     * 
+     * @return BaseModel
+     */
+    public function dropJoins() {
+
+        # removing joins from queryDatas
+        $this->__queryDatas['join'] = [];
+
+        return $this;
+    }
+
+
+    /**
      * Add prepared values
      * 
      * @param array params
