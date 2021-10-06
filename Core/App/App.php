@@ -7,6 +7,7 @@ use Framer\Core\Router\Router;
 use Framer\Core\Exceptions\FramerException;
 use Framer\Core\Exceptions\RouteNotFoundException;
 use Framer\Core\Model\DbManager;
+use Framer\Core\Model\EnvModel;
 
 class App
 {
@@ -25,7 +26,8 @@ class App
         FramerException::handleErrors();
 
         # connect database
-        DbManager::connect();
+        $ENV = EnvModel::get();
+        $ENV->use_db && DbManager::connect();
 
         # get the route from uri
         $route = Router::matchRoute( $query->uri, $query->method );

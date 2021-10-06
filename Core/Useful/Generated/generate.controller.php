@@ -1,5 +1,7 @@
 <?php
 
+namespace Framer\Core\Useful\Classes\Generated;
+
 function generateController($name) {
 
 $name = ucfirst($name);

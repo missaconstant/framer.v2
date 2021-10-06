@@ -54,6 +54,44 @@ class DbManager
 
 
     /**
+     * Get tables from db
+     * 
+     * @return mixed table list
+     */
+    static function getTables() {
+
+        if ( !self::$db ) return null;
+
+        # get .env vars
+        $ENV = EnvModel::get();
+
+        $r = self::$db->query("SELECT * FROM information_schema.tables WHERE TABLE_SCHEMA='$ENV->db_name'");
+        $r = $r->fetchAll(\PDO::FETCH_OBJ);
+
+        return $r;
+    }
+
+
+    /**
+     * Get table's columns from db
+     * 
+     * @return mixed columns list
+     */
+    static function getTableColumns($tablename) {
+
+        if ( !self::$db ) return null;
+
+        # get .env vars
+        $ENV = EnvModel::get();
+
+        $r = self::$db->query("SELECT * FROM information_schema.columns WHERE TABLE_SCHEMA='$ENV->db_name' AND TABLE_NAME='$tablename'");
+        $r = $r->fetchAll(\PDO::FETCH_OBJ);
+
+        return count($r) ? $r : null;
+    }
+
+
+    /**
      * Executes a query string
      * 
      * @param string the query string
