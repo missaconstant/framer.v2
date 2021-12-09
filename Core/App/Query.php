@@ -105,7 +105,7 @@ class Query
      * @return header
      */
     public function header($name) {
-        return $this->headers[ $name ] ?? 'text';
+        return $this->headers[ strtolower($name) ] ?? 'text';
     }
 
 }
