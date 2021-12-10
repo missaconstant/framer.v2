@@ -39,7 +39,9 @@ class Input
      */
     static function put($name=null, $secure=true) {
 
-        self::setDataType('put');
+        $isjson = preg_match("#json#", getallheaders()['Content-Type']);
+        self::setDataType( $isjson ? 'json' : 'put');
+
         return self::post($name, $secure);
 
     }
