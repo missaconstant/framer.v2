@@ -62,16 +62,24 @@ class DbQueryFactory
         foreach ( ($qd['join'] ?? []) as $k => $v ) {
             $v = (object) $v;
 
+            # get name and alias
+            $tab_name = preg_replace("#as[\s]{1,}[\s\S]+$#", '', $v->table);
+            $tab_alias = preg_replace("#[\s\S]+[\s]{1}as#", '', $v->table);
+            $as_string = $tab_name . (strlen($tab_alias) ? " as $tab_alias" : '');
+
+            # then pass to the alias the name if no alias setted
+            $tab_alias = strlen($tab_alias) ? $tab_name : $tab_alias;
+
             # add joinning
-            $jns[] = $v->type . ' ' . $v->table .' ON '. $v->chain;
+            $jns[] = $v->type . ' ' . $as_string .' ON '. $v->chain;
 
             # add fields to take from joinning
             foreach ( ($v->select ?? []) as $kk => $field ) {
                 $select = explode(':', $field);
                 $slc[] = count($select) > 1 ? 
-                    (preg_match("#^[\S]+\([\S]+\)$#", $select[0]) ? '' : $v->table .'.') . $select[0] .' AS '. $select[1]
+                    (preg_match("#^[\S]+\([\S]+\)$#", $select[0]) ? '' : $tab_alias .'.') . $select[0] .' AS '. $select[1]
                 :
-                    $v->table .'.'. $select[0] .' AS '. $v->table .'_'. $select[0]
+                    $tab_alias .'.'. $select[0] .' AS '. $tab_alias .'_'. $select[0]
                 ;
             }
         }
