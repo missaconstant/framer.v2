@@ -332,6 +332,16 @@ class BaseModel
 
 
     /**
+     * Save a model in databse
+     * 
+     * @return mixed new model or false
+     */
+    public function save() {
+        return empty($this->id) ? $this->create() : $this->update();
+    }
+
+
+    /**
      * Delete a model from databse
      * 
      * @param int id
