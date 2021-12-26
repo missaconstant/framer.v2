@@ -50,7 +50,7 @@ class JWT {
             $user->{ self::$configs->user_token_field } = $token;
 
             if ( $user->update() ) {
-                return $token;
+                return (object) ["token" => $token, "user" => $user];
             }
         }
 
