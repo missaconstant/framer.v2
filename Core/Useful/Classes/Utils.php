@@ -16,4 +16,20 @@ class Utils {
         return strtolower(trim($string, '-'));
     }
 
+    static function generateNumericOTP($n) {
+      
+        // Take a generator string which consist of
+        // all numeric digits
+        $generator = "1357902468";
+        
+        $result = "";
+      
+        for ($i = 1; $i <= $n; $i++) {
+            $result .= substr($generator, (rand()%(strlen($generator))), 1);
+        }
+      
+        // Return result
+        return $result;
+    }
+
 }
