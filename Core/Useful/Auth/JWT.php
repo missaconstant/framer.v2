@@ -28,7 +28,7 @@ class JWT {
      * @param username the user name - credentials
      * @param password the user password - credentials
      * 
-     * @return boolean | string
+     * @return object | bool
      */
     static function authentificate($username, $password, $duration=0, $tostore=[]) {
 
