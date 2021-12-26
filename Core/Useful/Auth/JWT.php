@@ -38,7 +38,7 @@ class JWT {
         if ( $user = self::findUserFromCred($username, $password) ) {
             $key = self::generateKey($username . $password);
             $pyd = array_merge([
-                "user" => $user->toArray(),
+                "user" => $user->id,
                 "creation" => getdate()[0],
                 "remote_addr" => $_SERVER['REMOTE_ADDR'],
                 "expire_in" => $duration
