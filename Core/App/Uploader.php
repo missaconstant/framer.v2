@@ -124,7 +124,7 @@ class Uploader {
             }
         }
 
-        $this->files = (object) $ordered;
+        $this->files = $ordered;
     }
 
 
