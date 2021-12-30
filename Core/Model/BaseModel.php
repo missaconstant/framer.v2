@@ -431,6 +431,8 @@ class BaseModel
     /**
      * Convert BaseModel into array
      * 
+     * @param array - columns to get
+     * 
      * @return array
      */
     public function toArray($columns=null) {
@@ -439,8 +441,8 @@ class BaseModel
         unset($vars['__queryDatas']);
 
         if ($columns) {
-            foreach ($columns as $col) {
-                if (isset($vars[$col])) unset($vars[$col]);
+            foreach ($vars as $col) {
+                if (!in_array($col, $columns)) unset($vars[$col]);
             }
         }
 
