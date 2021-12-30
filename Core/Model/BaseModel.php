@@ -433,10 +433,16 @@ class BaseModel
      * 
      * @return array
      */
-    public function toArray() {
+    public function toArray($columns=null) {
 
         $vars = get_object_vars($this);
         unset($vars['__queryDatas']);
+
+        if ($columns) {
+            foreach ($columns as $col) {
+                if (isset($vars[$col])) unset($vars[$col]);
+            }
+        }
 
         return $vars;
 
