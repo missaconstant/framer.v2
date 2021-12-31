@@ -68,7 +68,7 @@ class DbQueryFactory
             $as_string = $tab_name . (strlen($tab_alias) ? " as $tab_alias" : '');
 
             # then pass to the alias the name if no alias setted
-            $tab_alias = strlen($tab_alias) ? $tab_name : $tab_alias;
+            $tab_alias = !strlen($tab_alias) ? $tab_name : $tab_alias;
 
             # add joinning
             $jns[] = $v->type . ' ' . $as_string .' ON '. $v->chain;
