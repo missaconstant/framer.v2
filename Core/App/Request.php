@@ -67,7 +67,7 @@ class Request
 
         # remove query string part
         if ($ignoreQueryString) {
-            $uri = preg_replace("#\?[\s\S]+$#", "", $uri);
+            $uri = preg_replace("#\?[\s\S]*$#", "", $uri);
         }
 
         return Helpers::removeEndSlash(Helpers::removeDoubleSlash($uri));

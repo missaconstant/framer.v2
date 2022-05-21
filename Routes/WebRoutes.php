@@ -17,6 +17,9 @@ use Framer\Middlewares\DefaultsMiddleware;
 
 
 # route
-Route::get('/', [ DefaultsController::class, 'index' ])/*->middleware(DefaultsMiddleware::class)*/;
-Route::get('/list/{add}/{id}/{ot}', [ DefaultsController::class, 'getOne' ]);
-Route::get('/post/make', [ DefaultsController::class, 'make' ]);
+Route::get('/', [ DefaultsController::class, 'index' ]);
+Route::post('/upload', [ DefaultsController::class, 'uploading' ]);
+Route::get('/get-tables', [ DefaultsController::class, 'getTables' ]);
+
+Route::get('/login', [ DefaultsController::class, 'login' ]);
+Route::get('/sendmail', [ DefaultsController::class, 'sendmail' ]);
