@@ -46,7 +46,7 @@ try {
                 if ( preg_match("#^/$b#i", Request::$uri) ) {
                     $base = strtolower("/$b");
 
-                    require_once __DIR__ . '/Routes/' . $entry;
+                    require_once __DIR__ . '/Src/Routes/' . $entry;
                     break;
                 }
             }
