@@ -14,7 +14,7 @@ class Mailer {
 
     /**
      * getConfig
-     * 
+     *
      * @return EnvModel
      */
     static function getConfigs() {
@@ -24,7 +24,7 @@ class Mailer {
 
     /**
      * doConfig
-     * 
+     *
      * @return void
      */
     static function doConfig() {
@@ -46,10 +46,10 @@ class Mailer {
 
     /**
      * setAddresses
-     * 
+     *
      * @param $addresses
      * @param $type - can be: Adress | ReplyTo | CC | BCC | Attachement
-     * 
+     *
      * @return void
      */
     static function setDestinations($addresses, $type='Address') {
@@ -72,24 +72,24 @@ class Mailer {
             self::$mail->setFrom($mailObject->sender[0], $mailObject->sender[1] ?? '');
 
             // addresses
-            self::setDestinations($mailObject->address);
+            self::setDestinations($mailObject->addresses);
 
             // reply to
             $mailObject->replyto && self::setDestinations($mailObject->replyto, 'ReplyTo');
             $mailObject->cc && self::setDestinations($mailObject->cc, 'CC');
             $mailObject->bcc && self::setDestinations($mailObject->bcc, 'BCC');
-        
+
             //Attachment
             $mailObject->attachment && self::setDestinations($mailObject->attachment, 'Attachment');
-        
+
             //Content
             self::$mail->isHTML(true);                                  //Set email format to HTML
             self::$mail->Subject = $mailObject->subject;
             self::$mail->Body    = $mailObject->body;
             self::$mail->AltBody = $mailObject->altbody ?? '';
-        
+
             self::$mail->send();
-            
+
             return (object) ["error" => false];
         } catch (Exception $e) {
             return (object) ["error" => true, "message" => self::$mail->ErrorInfo];

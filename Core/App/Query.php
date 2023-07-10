@@ -73,14 +73,14 @@ class Query
     public function file($name=null) {
         return Input::file( $name );
     }
-    
+
 
     /**
      * Get params
-     * 
+     *
      * @param string key
      * @param mixed|null value to set for key
-     * 
+     *
      * @return mixed|void
      */
     public function get($valsOrKey=null) {
@@ -105,7 +105,7 @@ class Query
      * @return header
      */
     public function header($name) {
-        return $this->headers[ strtolower($name) ] ?? 'text';
+        return $this->headers[ $name ]  ?? $this->headers[ strtolower($name) ] ?? 'text';
     }
 
 }

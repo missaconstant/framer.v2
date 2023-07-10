@@ -4,21 +4,22 @@ namespace Framer\Core\App;
 
 use Framer\Core\App\Helpers;
 use Framer\Core\Exceptions\FramerException;
+use Latte\Engine;
 
 class Templater
 {
-    
+
     /** @var string base directory */
     static $basedir = __DIR__ . '/../../views/';
 
 
     /**
      * Default view loader : no template engin
-     * 
+     *
      * @param string view path
      * @param mixed variable to extract in
      * @param string layout path
-     * 
+     *
      * @return void
      */
     static function default($view, $vars=[], $layout=null) {
@@ -42,30 +43,28 @@ class Templater
 
     /**
      * Latte : template engin
-     * 
+     *
      * @param string view path
      * @param mixed variable to extract in
      * @param string layout path
-     * 
+     *
      * @return void
      */
     static function latte($viewpath, $vars) {
 
         try {
-            $latte = new \Latte\Engine;
+            # get the latte engine
+            $latte = new Engine();
 
+            # setting temp path
             $latte->setTempDirectory(Helpers::path('Temp/Latte'));
 
-            $params = $vars;
-
             # render to output
-            $latte->render(Helpers::path('Views/'. $viewpath .'.latte'), $params);
+            $latte->render(Helpers::path('Src/Views/'. $viewpath .'.latte'), $vars);
         }
-        catch (\Throwable $th) {
+        catch (\Exception $e) {
             throw new FramerException("Template introuvable.");
         }
-
-        return;
     }
 
 }

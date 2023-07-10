@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/Vendors/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/Vendors/psr/log" />
+      <path value="$PROJECT_DIR$/Vendors/psr/container" />
+      <path value="$PROJECT_DIR$/Vendors/psr/cache" />
+      <path value="$PROJECT_DIR$/Vendors/composer" />
+      <path value="$PROJECT_DIR$/Vendors/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/Vendors/illuminate/collections" />
+      <path value="$PROJECT_DIR$/Vendors/illuminate/macroable" />
+      <path value="$PROJECT_DIR$/Vendors/illuminate/support" />
+      <path value="$PROJECT_DIR$/Vendors/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/Vendors/illuminate/container" />
+      <path value="$PROJECT_DIR$/Vendors/doctrine/collections" />
+      <path value="$PROJECT_DIR$/Vendors/illuminate/contracts" />
+      <path value="$PROJECT_DIR$/Vendors/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/Vendors/illuminate/database" />
+      <path value="$PROJECT_DIR$/Vendors/doctrine/orm" />
+      <path value="$PROJECT_DIR$/Vendors/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/Vendors/doctrine/persistence" />
+      <path value="$PROJECT_DIR$/Vendors/doctrine/common" />
+      <path value="$PROJECT_DIR$/Vendors/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/Vendors/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/Vendors/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/Vendors/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/Vendors/doctrine/cache" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/console" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/cache-contracts" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/var-exporter" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/string" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/yaml" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/translation" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/cache" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/polyfill-php73" />
+      <path value="$PROJECT_DIR$/Vendors/latte/latte" />
+      <path value="$PROJECT_DIR$/Vendors/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/Vendors/phpmailer/phpmailer" />
+      <path value="$PROJECT_DIR$/Vendors/robmorgan/phinx" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/config" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/Vendors/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/Vendors/cakephp/utility" />
+      <path value="$PROJECT_DIR$/Vendors/cakephp/core" />
+      <path value="$PROJECT_DIR$/Vendors/cakephp/database" />
+      <path value="$PROJECT_DIR$/Vendors/cakephp/datasource" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.1">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/Vendors/autoload.php" />
+    </phpunit_settings>
+  </component>
+</project>

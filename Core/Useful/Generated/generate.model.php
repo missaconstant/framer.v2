@@ -1,33 +1,9 @@
 <?php
 
 namespace Framer\Core\Useful\Classes\Generated;
-use Framer\Core\Model\DbManager;
 
-function generateModel($name) {
-
+function generateModel($name, $tablename) {
     $name = ucfirst($name);
-    $sname = strtolower($name);
-
-    $defaultcolumns = [
-        (object) ["COLUMN_NAME" => "id", "COLUMN_DEFAULT" => null]
-    ];
-
-    // try getting table columns if table exists
-    $defaultcolumns = getTableColumns($sname) ?? $defaultcolumns;
-
-    // print column list
-    $list = [];
-
-    foreach ($defaultcolumns as $k => $column) {
-        
-        $list[] = "public $$column->COLUMN_NAME" . ($column->COLUMN_DEFAULT != NULL ? " = $column->COLUMN_DEFAULT" : "") . ";";
-    }
-
-    $list = implode("\n\t", array_map(function ($item) {
-        return "$item";
-    }, $list));
-
-
     $string =
 
 <<<EOD
@@ -35,18 +11,13 @@ function generateModel($name) {
 
 namespace Framer\Models;
 
-use Framer\Core\Model\BaseModel;
+use Illuminate\Database\Eloquent\Model;
 
-class $name extends BaseModel
+class $name extends Model
 {
     
-    $list
-
-
-    public function __construct() {
-        parent::__construct('$sname');
-    }
-
+    protected \$table = '$tablename';
+    
 }
 
 EOD;

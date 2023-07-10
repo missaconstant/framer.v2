@@ -4,6 +4,7 @@ use Framer\Core\App\Helpers;
 use Framer\Core\App\Session;
 use Framer\Core\Model\EnvModel;
 use Framer\Core\App\View;
+use Framer\Core\App\Response;
 
 
 if ( !function_exists('dump') ) {
@@ -51,7 +52,7 @@ if ( !function_exists('view') ) {
 
 if ( !function_exists('assets') ) {
     function assets($path) {
-        return uri('Assets/' . $path);
+        return uri('Src/Assets/' . $path);
     }
 }
 
@@ -77,5 +78,17 @@ if ( !function_exists('old') ) {
 if ( !function_exists('error') ) {
     function error($err) {
         return Session::flash('error_set_' . $err);
+    }
+}
+
+if ( !function_exists('response_success') ) {
+    function response_success($message="", $content=[], $code=200) {
+        return Response::jsonSuccess($message, $content, $code);
+    }
+}
+
+if ( !function_exists('response_error') ) {
+    function response_error($message="", $content=[], $code=500) {
+        return Response::jsonError($message, $content, $code);
     }
 }

@@ -1,0 +1,13 @@
+- Redirection de requete
+    Permettre à ce qu'une requête puis en entrainer une autre.
+
+- Integrer Eloquent ORM -- ok
+
+- Revoir la structure des fichiers -- ok
+    Separer les sources du core.
+
+- Prevoir un deploiement sur composer
+
+- Ecrire une petite doc
+
+- installer un migrateur db -- ok

@@ -12,10 +12,10 @@ class DbManager
 
     /** @var PDO database connexion object */
     static $db = null;
-    
+
     /**
      * Connect app to database
-     * 
+     *
      * @return void
      */
     static function connect() {
@@ -25,7 +25,7 @@ class DbManager
 
         try {
             $pdo_options[\PDO::ATTR_ERRMODE] = \PDO::ERRMODE_EXCEPTION;
-            self::$db = new \PDO($ENV->db_type . ':dbname=' . $ENV->db_name . '; host=' . $ENV->db_host, $ENV->db_user, $ENV->db_password, $pdo_options);
+            self::$db = new \PDO($ENV->db_driver . ':dbname=' . $ENV->db_name . '; host=' . $ENV->db_host, $ENV->db_user, $ENV->db_password, $pdo_options);
             self::$db->exec("set names utf8");
         }
         catch (\Throwable $th) {
@@ -38,7 +38,7 @@ class DbManager
 
     /**
      * Check if db instance is setted
-     * 
+     *
      * @return boolean
      */
     static function isDb($throwError) {
@@ -48,14 +48,14 @@ class DbManager
             throw new DbException("Database connexion failed !");
             exit();
         }
-        
+
         return $isdb;
     }
 
 
     /**
      * Get tables from db
-     * 
+     *
      * @return mixed table list
      */
     static function getTables() {
@@ -74,7 +74,7 @@ class DbManager
 
     /**
      * Get table's columns from db
-     * 
+     *
      * @return mixed columns list
      */
     static function getTableColumns($tablename) {
@@ -93,10 +93,10 @@ class DbManager
 
     /**
      * Executes a query string
-     * 
+     *
      * @param string the query string
      * @param array datas to pass in query
-     * 
+     *
      * @return mixed query result
      */
     static function executeQuery($queryString, $queryDatas=[], $action=null) {
@@ -111,7 +111,7 @@ class DbManager
             $result = $toPrepare ? $query->execute($queryDatas) : $query;
             $result = $action === 'INSERT' ? self::$db->lastInsertId() : $result;
 
-            $return = is_object($result) ? 
+            $return = is_object($result) ?
                         new ObjectCollection($result->fetchAll(\PDO::FETCH_OBJ))
                         :
                         $result;
@@ -126,9 +126,9 @@ class DbManager
 
     /**
      * Sorts query datas to keep only the needed
-     * 
+     *
      * @param array query datas
-     * 
+     *
      * @return array query datas without unecessary field
      */
     static function sortDatasByQueryString($queryString, $queryDatas) {

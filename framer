@@ -5,13 +5,14 @@ namespace Framer;
 use Framer\Core\Model\DbManager;
 use Framer\Core\Model\EnvModel;
 
-# the autoloader
-require_once __DIR__ . '/Autoloader.php';
-
 use function Framer\Core\Useful\Classes\Generated\generateController;
 use function Framer\Core\Useful\Classes\Generated\generateModel;
 
 define('DEFAULT_PORT', 9000);
+
+# the autoloader
+# require_once __DIR__ . '/Autoloader.php';
+require_once __DIR__ . '/Vendors/autoload.php';
 
 if ( php_sapi_name() === 'cli' ) {
     # serving array
@@ -32,43 +33,43 @@ if ( php_sapi_name() === 'cli' ) {
         foreach ( $params as $k => $option ) {
             # get the next param
             $next = $params[$k + 1] ?? null;
-    
+
             switch ( $option ) {
                 case '-p':
                 case '--port':
                     $serving['port'] = "-S 0.0.0.0:" . ($next ?? DEFAULT_PORT);
                     break;
-    
+
                 case '--dev':
                 case '--share':
                     $serving['iptype'] = $option === '--dev' ? 'localhost' : '0.0.0.0';
                     $serving['port'] = "-S " . $serving['iptype'] . ":" . explode(':', $serving['port'])[1];
                     break;
-                
+
                 default:
                     # code...
                     break;
             }
         }
-    
+
         # building query string
         $strings = [];
-    
+
         # before, remove some stuffs
         unset($serving['iptype']);
-    
+
         foreach ( $serving as $k => $string ) {
             $strings[] = $string;
         }
-    
+
         $strings = implode(' ', $strings);
-    
+
         # ehco all
         echo "\033[96m=========== <FRAMER> =============\033[39m\n\n";
         echo "\033[96mBuit-in server started ...\033[39m\n";
         echo "\033[39mListening on\033[1m\033[96m". str_replace('-S', '', str_replace(':', " \033[0mport\033[1m\033[96m ", $serving['port'])) ."\033[0m ...\033[39m\n";
         echo "\n\033[96m=========== </FRAMER> ============\033[39m\n";
-        
+
         # then execute
         exec( "php $strings" );
     }
@@ -84,7 +85,7 @@ if ( php_sapi_name() === 'cli' ) {
                 include_once __DIR__ . '/Core/Useful/Generated/generate.controller.php';
 
                 $string = generateController($params[1]);
-                @file_put_contents(__DIR__ . "/Controllers/" . ucfirst($params[1]) . '.php', $string);
+                @file_put_contents(__DIR__ . "/Src/Controllers/" . ucfirst($params[1]) . '.php', $string);
                 echo "\033[96mSuccess: Controller [". ucfirst($params[1]) ."] successfuly created.\033[39m\n\n";
                 break;
 
@@ -96,10 +97,18 @@ if ( php_sapi_name() === 'cli' ) {
                 include_once __DIR__ . '/Core/Useful/Generated/generate.model.php';
 
                 $string = generateModel($params[1], ($params[2] ?? 'blank'));
-                @file_put_contents(__DIR__ . "/Models/" . ucfirst($params[1]) . '.php', $string);
+                @file_put_contents(__DIR__ . "/Src/Models/" . ucfirst($params[1]) . '.php', $string);
                 echo "\033[96mSuccess: Model [". ucfirst($params[1]) ."] successfuly created.\033[39m\n\n";
                 break;
         }
+    }
+    else if ($params[0] === 'migrate') {
+        Bootstrap::boot();
+
+        $filename = $params[1] . ".php";
+        require_once __DIR__ . '/Database/' . $filename;
+
+        echo "\033[96mMigration finished.\033[39m\n\n";
     }
 
 }

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/Vendors" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Vendors/Latte/Compiler" isTestSource="false" packagePrefix="Latte" />
+      <sourceFolder url="file://$MODULE_DIR$/Vendors/Firebase/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/cakephp/core" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/cakephp/database" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/cakephp/datasource" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/cakephp/utility" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/doctrine/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/doctrine/collections" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/doctrine/common" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/doctrine/dbal" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/doctrine/deprecations" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/doctrine/event-manager" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/doctrine/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/doctrine/instantiator" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/doctrine/lexer" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/doctrine/orm" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/doctrine/persistence" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/firebase/php-jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/illuminate/collections" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/illuminate/container" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/illuminate/contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/illuminate/database" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/illuminate/macroable" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/illuminate/support" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/latte/latte" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/nesbot/carbon" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/phpmailer/phpmailer" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/psr/simple-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/robmorgan/phinx" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/cache-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/config" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/console" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/deprecation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/filesystem" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/polyfill-intl-grapheme" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/polyfill-intl-normalizer" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/polyfill-php72" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/polyfill-php73" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/polyfill-php80" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/polyfill-php81" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/service-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/string" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/translation" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/translation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/var-exporter" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/yaml" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/voku/portable-ascii" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

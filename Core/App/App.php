@@ -11,7 +11,7 @@ use Framer\Core\Model\EnvModel;
 
 class App
 {
-    
+
     /**
      * @method start
      * @param $uri - path
@@ -29,6 +29,9 @@ class App
         $ENV = EnvModel::get();
         $ENV->use_db && DbManager::connect();
 
+        # boot
+        Bootstrap::boot();
+
         # get the route from uri
         $route = Router::matchRoute( $query->uri, $query->method );
 
@@ -41,7 +44,7 @@ class App
         # mergin get params to  query object
         $query->get( $route->getParams() );
         $query->originalURI = $route->getPath();
-        
+
         # execute route middlewares
         $middlewareReturns = [];
 
@@ -51,9 +54,9 @@ class App
         }
 
         # execute route action
-        # passign queryObject and middlewares answers
+        # passing queryObject and middlewares answers
         $route->getController()::{ $route->getAction() }( $query, (object) $middlewareReturns );
-        
+
         # destroy session flash datas
         Session::destroyFlash();
     }
