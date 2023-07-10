@@ -1,10 +1,5 @@
-Src/Controllers/
-Src/Models/
+Src/
 Configs/.env
 Configs/autoloader.json
-Src/Routes/
-Src/Assets/
-Src/Middlewares/
 Temp/
 Vendors/
-Src/Views/
