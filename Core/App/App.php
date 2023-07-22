@@ -36,9 +36,10 @@ class App
         $route = Router::matchRoute( $query->uri, $query->method );
 
         # check route
+        # by now, this cause a bug
+        # have to solve it
         if ( !$route ) {
             throw new RouteNotFoundException;
-            return;
         }
 
         # mergin get params to  query object

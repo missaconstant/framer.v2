@@ -14,7 +14,9 @@ class Bootstrap {
             "host" => $env->db_host,
             "database" => $env->db_name,
             "username" => $env->db_user,
-            "password" => $env->db_password
+            "password" => $env->db_password,
+            'charset' => $env->db_charset ?? 'utf8mb4',
+            'collation' => $env->db_collation ?? 'utf8mb4_unicode_ci'
         ]);
         $capsule->setAsGlobal();
         $capsule->bootEloquent();
