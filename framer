@@ -90,10 +90,6 @@ if ( php_sapi_name() === 'cli' ) {
                 break;
 
             case 'model':
-                // connect to the database
-                $ENV = EnvModel::get();
-                DbManager::connect();
-
                 include_once __DIR__ . '/Core/Useful/Generated/generate.model.php';
 
                 $string = generateModel($params[1], ($params[2] ?? 'blank'));

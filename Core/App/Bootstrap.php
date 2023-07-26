@@ -23,7 +23,13 @@ class Bootstrap {
     }
 
     static function boot() {
+        # get env vars
         $env = EnvModel::get();
+
+        # init db
         $env->use_db && self::setDb($env);
+
+        # init Logger
+        Logger::init();
     }
 }

@@ -11,7 +11,8 @@
     "latte/latte": "^2.11",
     "firebase/php-jwt": "^6.8",
     "phpmailer/phpmailer": "^6.8",
-    "robmorgan/phinx": "^0.13.4"
+    "robmorgan/phinx": "^0.13.4",
+    "katzgrau/klogger": "dev-master"
   },
   "autoload": {
     "psr-4": {"": ["", "Vendors"], "Framer\\":  ["", "Src"]}

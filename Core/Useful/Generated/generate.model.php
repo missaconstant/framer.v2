@@ -25,8 +25,3 @@ EOD;
     return $string;
 
 }
-
-
-function getTableColumns($tablename) {
-    return DbManager::getTableColumns($tablename);
-}
