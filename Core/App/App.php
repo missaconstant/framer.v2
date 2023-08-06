@@ -2,7 +2,6 @@
 
 namespace Framer\Core\App;
 
-use Framer\Core\App\Request;
 use Framer\Core\Router\Router;
 use Framer\Core\Exceptions\FramerException;
 use Framer\Core\Exceptions\RouteNotFoundException;
@@ -18,6 +17,8 @@ class App
      * starts app
      */
     static function start(Query $query) {
+        # pre-flight handle
+        Bootstrap::handlePreFlight($query);
 
         # init session
         Session::init();
@@ -38,7 +39,7 @@ class App
         # check route
         # by now, this cause a bug
         # have to solve it
-        if ( !$route ) {
+        if ( !$route || false ) {
             throw new RouteNotFoundException;
         }
 

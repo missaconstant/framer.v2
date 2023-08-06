@@ -22,6 +22,18 @@ class Bootstrap {
         $capsule->bootEloquent();
     }
 
+
+    static function handlePreFlight(Query $query) {
+        if($query->method === 'options') {
+            header('Access-Control-Allow-Origin: *');
+            header('Access-Control-Max-Age: 60');
+            header('Access-Control-Allow-Headers: *');
+            header("HTTP/1.1 200 OK");
+            die();
+        }
+    }
+
+
     static function boot() {
         # get env vars
         $env = EnvModel::get();
