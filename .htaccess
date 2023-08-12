@@ -41,12 +41,12 @@
 
 # All pages in UTF-8
   AddDefaultCharset UTF-8
-  
+
 # Set standard Timezone (will change dynamically)
-  php_value date.timezone "Europe/London"
+  # php_value date.timezone "Europe/London"
 
 # Deactivate MultiViews
-# MultiViews would redirect to hello.php if you 
+# MultiViews would redirect to hello.php if you
 # request /hello/
 # Deactivate also directory browse
   Options -Indexes +FollowSymLinks -MultiViews
@@ -68,8 +68,8 @@
   AddType application/octet-stream .mp4
 
 # Set max upload filesize
-  php_value upload_max_filesize 100M
-  php_value post_max_size 100M
+  # php_value upload_max_filesize 100M
+  # php_value post_max_size 100M
 
 # Add security-layer for .htaccess-files
 <files .htaccess="">
@@ -112,7 +112,7 @@
 	ExpiresByType text/html "access plus 600 seconds"
 	ExpiresByType application/xhtml+xml "access plus 600 seconds"
 </IfModule>
- 
+
 # Cache-Control Headers
 <IfModule mod_headers.c>
 	# Imagetoolbar deaktivieren (IE)
@@ -130,13 +130,13 @@
 		Header set Cache-Control "max-age=600, private, must-revalidate"
 	</FilesMatch>
 </IfModule>
- 
+
 # Turn ETags Off
 <IfModule mod_headers.c>
 	Header unset ETag
 </IfModule>
   FileETag None
- 
+
 # Remove Last-Modified Header
 <IfModule mod_headers.c>
 	Header unset Last-Modified
@@ -151,10 +151,10 @@
 #--------------------------------
 
 <IfModule mod_rewrite.c>
-	
+
 	RewriteEngine On
 	RewriteBase /
-	
+
 	# Set variable to the current installation route
 	# so all redirects can perform with this
 	# if the .htaccess is installed in a sub-directory
@@ -163,36 +163,36 @@
 	# of the htaccess
 	RewriteCond %{REQUEST_URI}::$1 ^(.*?/)(.*)::\2$
 	RewriteRule ^(.*) - [E=BASE:%1]
-	
+
 	#--------------------------------
 	#--------Common Redirects--------
 	#--------------------------------
-	
+
 	# Redirect to domain with www but allow subdomains
 	RewriteCond %{HTTP_HOST} ^[^.]+\.[^.]+$
 	RewriteCond %{HTTPS}s ^on(s)|
 	RewriteRule ^ http%1://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-	
+
 	# Add slash if there is no at the end
-	#RewriteCond %{REQUEST_URI} !(/$|\.) 
+	#RewriteCond %{REQUEST_URI} !(/$|\.)
 	#RewriteRule (.*) %{REQUEST_URI}/ [R=301,L]
-	
+
 	# Remove double slashes in all URLs
 	RewriteCond %{THE_REQUEST} ^[A-Z]+\ /(([^/\ ]+/)*)/+([^\ ]*)
 	RewriteRule ^ /%1%3 [L,R=301]
-	
+
 	#--------------------------------
 	#------Simluate Directories------
 	#--------------------------------
-	
+
 	# Redirect to URI without front controller to prevent duplicate content
 	RewriteCond %{ENV:REDIRECT_STATUS} ^$
 	RewriteRule ^index\.php(/(.*)|$) %{ENV:BASE}/$2 [R=301,L]
-	
+
 	# If the requested filename exists, simply serve it.
 	RewriteCond %{REQUEST_FILENAME} -f
 	RewriteRule .? - [L]
-	
+
 	# Rewrite all other queries to the front controller.
 	RewriteRule .? %{ENV:BASE}/index.php [L]
 </IfModule>
