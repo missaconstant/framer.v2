@@ -60,6 +60,7 @@
       <excludeFolder url="file://$MODULE_DIR$/Vendors/symfony/yaml" />
       <excludeFolder url="file://$MODULE_DIR$/Vendors/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/Vendors/katzgrau/klogger" />
+      <excludeFolder url="file://$MODULE_DIR$/Vendors/psr/clock" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

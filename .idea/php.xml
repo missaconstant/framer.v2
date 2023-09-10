@@ -55,6 +55,7 @@
       <path value="$PROJECT_DIR$/Vendors/cakephp/database" />
       <path value="$PROJECT_DIR$/Vendors/cakephp/datasource" />
       <path value="$PROJECT_DIR$/Vendors/katzgrau/klogger" />
+      <path value="$PROJECT_DIR$/Vendors/psr/clock" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1">
