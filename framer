@@ -98,6 +98,22 @@ if ( php_sapi_name() === 'cli' ) {
                 break;
         }
     }
+    else if ($params[0] === 'build') {
+        $env = $params[1];
+
+        if (file_exists(__DIR__ . "/Configs/.env.$env")) {
+            @rename(__DIR__ . "/Configs/.env", __DIR__ . '/Configs/.env.' . date('YmdHis'));
+            @rename(__DIR__ . "/Configs/.env.$env", __DIR__ . '/Configs/.env');
+        }
+    }
+    else if ($params[0] === 'build') {
+        $env = $params[1];
+
+        if (file_exists(__DIR__ . "/Configs/.env.$env")) {
+            @rename(__DIR__ . "/Configs/.env", __DIR__ . '/Configs/.env.' . date('YmdHis'));
+            @rename(__DIR__ . "/Configs/.env.$env", __DIR__ . '/Configs/.env');
+        }
+    }
     else if ($params[0] === 'migrate') {
         Bootstrap::boot();
 
