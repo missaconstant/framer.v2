@@ -8,11 +8,12 @@ interface MiddlewareInterface {
 
     /**
      * Runs the middleware
-     * 
+     *
      * @param Query The query object
-     * 
+     * @param StdClass middle data from previous middlewares called
+     *
      * @return void
      */
-    public function run(Query $query);
+    public function run(Query $query, $middles);
 
 }

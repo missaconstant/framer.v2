@@ -1,9 +1,9 @@
+#!/usr/bin/env php
 <?php
 
 namespace Framer;
 
-use Framer\Core\Model\DbManager;
-use Framer\Core\Model\EnvModel;
+use Framer\Core\App\Bootstrap;
 
 use function Framer\Core\Useful\Classes\Generated\generateController;
 use function Framer\Core\Useful\Classes\Generated\generateModel;
@@ -106,14 +106,6 @@ if ( php_sapi_name() === 'cli' ) {
             @rename(__DIR__ . "/Configs/.env.$env", __DIR__ . '/Configs/.env');
         }
     }
-    else if ($params[0] === 'build') {
-        $env = $params[1];
-
-        if (file_exists(__DIR__ . "/Configs/.env.$env")) {
-            @rename(__DIR__ . "/Configs/.env", __DIR__ . '/Configs/.env.' . date('YmdHis'));
-            @rename(__DIR__ . "/Configs/.env.$env", __DIR__ . '/Configs/.env');
-        }
-    }
     else if ($params[0] === 'migrate') {
         Bootstrap::boot();
 
@@ -121,6 +113,16 @@ if ( php_sapi_name() === 'cli' ) {
         require_once __DIR__ . '/Database/' . $filename;
 
         echo "\033[96mMigration finished.\033[39m\n\n";
+    }
+    else if ($params[0] === 'phinx') {
+        $_args = implode(" ", array_slice($params, 1));
+        $bin = __DIR__ . "/Vendors/bin/phinx";
+
+        if (file_exists($bin)) {
+            echo "php $bin $_args \n";
+            exec("php $bin $_args", $output);
+            echo implode("\n", $output);
+        }
     }
 
 }
