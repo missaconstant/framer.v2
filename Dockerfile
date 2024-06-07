@@ -26,12 +26,12 @@ COPY . /var/www/html
 # Répertoire de travail
 WORKDIR /var/www/html
 
-# Installer les dépendances avec Composer
-RUN composer install
-
 # Définir le propriétaire des fichiers et les permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
+
+# Installer les dépendances avec Composer
+RUN composer install
 
 # Exposer le port
 EXPOSE 80

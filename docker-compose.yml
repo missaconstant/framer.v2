@@ -7,8 +7,9 @@ services:
       dockerfile: Dockerfile
     container_name: php-apache
     volumes:
-      - ./:/var/www/html
       - ./.Docker/apache-config.conf:/etc/apache2/sites-enabled/000-default.conf
+      - ./Configs:/var/wwww/html/Configs
+      - ./Src:/var/wwww/html/Src
     depends_on:
       - db
     ports:
