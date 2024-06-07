@@ -2,10 +2,12 @@
 
 namespace Framer\Routes;
 
+// use MiladRahimi\PhpRouter\Router $router variable to create your routes
+// you don't need to instanciate router just use it
+// $router->...
+// Doc: https://github.com/miladrahimi/phprouter
+
 use Framer\Controllers\DefaultsController;
-use Framer\Core\Router\Route;
-
-
 /**
  * ------------------------
  * ---------WEB ROUTES-----
@@ -13,9 +15,4 @@ use Framer\Core\Router\Route;
  * Here all the route that should be registered for web
  * Set your routes by method
  */
-
-
-# route
-Route::get('/', [ DefaultsController::class, 'index' ]);
-Route::post('/login', [ DefaultsController::class, 'testLogin' ]);
-Route::get('/email', [ DefaultsController::class, 'testEmail' ]);
+$router->get('/', [DefaultsController::class, 'index']);

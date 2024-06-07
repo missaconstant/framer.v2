@@ -1,7 +1,7 @@
 <?php
 namespace Framer\Core\App;
 
-use Framer\Core\Model\EnvModel;
+use Framer\Core\Model\EnvModel as Env;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 class Bootstrap {
@@ -23,8 +23,8 @@ class Bootstrap {
     }
 
 
-    static function handlePreFlight(Query $query) {
-        if($query->method === 'options') {
+    static function handlePreFlight() {
+        if(Router) {
             header('Access-Control-Allow-Origin: *');
             header('Access-Control-Max-Age: 60');
             header('Access-Control-Allow-Headers: *');
@@ -35,11 +35,8 @@ class Bootstrap {
 
 
     static function boot() {
-        # get env vars
-        $env = EnvModel::get();
-
         # init db
-        $env->use_db && self::setDb($env);
+        Env::$vars->use_db && self::setDb(Env::$vars);
 
         # init Logger
         Logger::init();

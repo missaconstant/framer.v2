@@ -5,7 +5,7 @@ namespace Framer\Core\Useful\Auth;
 use Firebase\JWT\JWT as JWTJWT;
 use Firebase\JWT\Key;
 use Framer\Core\Exceptions\FramerException;
-use Framer\Core\Model\EnvModel;
+use Framer\Core\Model\EnvModel as Env;
 use Illuminate\Database\Eloquent\Model;
 
 class JWT {
@@ -125,7 +125,7 @@ class JWT {
      * @return \stdClass
      */
     static function getConfigs() {
-        self::$configs = self::$configs ?? EnvModel::get();
+        self::$configs = self::$configs ?? Env::$vars;
         return self::$configs;
     }
 
@@ -135,8 +135,9 @@ class JWT {
      * @throws FramerException
      */
     static function userModelGuard() {
-        if (!self::$usermodel)
+        if (!self::$usermodel) {
             throw new FramerException("Model d'utilisateur introuvable.");
+        }
     }
 
 }

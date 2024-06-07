@@ -1,5 +1,7 @@
-Src/
+Src
 Configs/.env
 Configs/autoloader.json
-Temp/
-Vendors/
+Temp
+Vendors
+docker-compose.yml
+Dockerfile

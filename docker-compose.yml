@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php-apache
+    volumes:
+      - ./:/var/www/html
+      - ./.Docker/apache-config.conf:/etc/apache2/sites-enabled/000-default.conf
+    depends_on:
+      - db
+    ports:
+      - "9901:80"
+    networks:
+      - app-network
+
+  db:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: framer_v2
+    ports:
+      - "9902:3306"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

@@ -14,6 +14,6 @@ interface MiddlewareInterface {
      *
      * @return void
      */
-    public function run(Query $query, $middles);
+    public function run($middles);
 
 }

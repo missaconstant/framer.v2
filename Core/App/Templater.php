@@ -24,20 +24,20 @@ class Templater
      */
     static function default($view, $vars=[], $layout=null) {
 
-        $path = Helpers::path('Views/' . $view . '.php');
+        // $path = Helpers::path('Views/' . $view . '.php');
 
         # vars extraction
-        is_array($vars) && extract($vars);
+        // is_array($vars) && extract($vars);
 
         # act by file
-        if ( file_exists($path) ) {
-            include_once $path;
-        }
-        else {
-            throw new FramerException("Vue introuvable.");
-        }
+        // if ( file_exists($path) ) {
+        //     include_once $path;
+        // }
+        // else {
+        //     throw new FramerException("Vue introuvable.");
+        // }
 
-        return;
+        // return;
     }
 
 
@@ -57,10 +57,10 @@ class Templater
             $latte = new Engine();
 
             # setting temp path
-            $latte->setTempDirectory(Helpers::path('Temp/Latte'));
+            $latte->setTempDirectory(__DIR__ . '/../../Temp/Latte');
 
             # render to output
-            $latte->render(Helpers::path('Src/Views/'. $viewpath .'.latte'), $vars);
+            return $latte->renderToString(__DIR__ . '/../../Src/Views/'. $viewpath .'.latte', $vars);
         }
         catch (\Exception $e) {
             throw new FramerException("Template introuvable.");

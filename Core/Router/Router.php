@@ -2,41 +2,33 @@
 
 namespace Framer\Core\Router;
 
-use Framer\Core\Router\RouterStack;
-use Framer\Core\Router\RouteInstance;
+use MiladRahimi\PhpRouter\Router as PhpRouterRouter;
 
 class Router
 {
 
-    /**
-     * @method register
-     * @param $path
-     * @return 
-     * 
-     * register a route to stack
-     */
-    static function register($path, $method, $controller, $action) {
+    static function init() {
+        $router = PhpRouterRouter::create();
 
-        $route = new RouteInstance($path, $method, $controller, $action);
-        RouterStack::addRoute( $route );
+        if ( $folder = opendir(__DIR__ . '/../../Src/Routes') ) {
+            while ( false !== ($entry = readdir($folder)) ) {
+                if ( preg_match("#Routes.php$#i", $entry) ) {
+                    $name = strtolower(str_replace("Routes.php", "", $entry));
+                    
+                    if ($name !== 'web') {
+                        $router->group(['prefix' => "/$name"], function (PhpRouterRouter $router) use ($entry) {
+                            include_once __DIR__ . '/../../Src/Routes/' . $entry;
+                        });
+                    }
+                    else {
+                        include_once __DIR__ . '/../../Src/Routes/' . $entry;
+                    }
+                }
+            }
+            closedir($folder);
+        }
 
-        $route->_onNameGiven = function($r) {
-            RouterStack::addNamed($r);
-        };
-
-        return $route;
-    }
-
-
-    /**
-     * @method matchRoute
-     * @param $path
-     * @return RouterInstance
-     * 
-     * register a route to stack
-     */
-    static function matchRoute($path, $method) {
-        return RouterStack::matchPath( $path, $method );
+        $router->dispatch();
     }
 
 }

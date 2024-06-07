@@ -6,6 +6,7 @@ use Framer\Core\App\Controller;
 use Framer\Core\App\Query;
 use Framer\Core\Useful\Auth\JWT;
 use Framer\Core\Useful\Classes\Mailer;
+use Laminas\Diactoros\ServerRequest;
 
 class DefaultsController extends Controller
 {
@@ -17,20 +18,21 @@ class DefaultsController extends Controller
      *
      * @return View
      */
-    static function index(Query $query) {
-        view('FramerViews/template');
+    static function index(ServerRequest $sr) {
+        dump($sr->getUri()->getHost());
+        return view('FramerViews/template');
     }
 
-    static function testLogin(Query $q) {
+    static function testLogin() {
         $auth =  JWT::authentificate(
-            $q->input('username'),
-            hash('sha256', $q->input('password'))
+            'username',
+            hash('sha256', 'password')
         );
 
         response_success($auth);
     }
 
-    static function testEmail(Query $q) {
+    static function testEmail() {
         $email = new \stdClass();
         $email->sender = ['sender@email.com', 'Framer team'];
         $email->addresses = [['to@email.com', 'Receiver']];

@@ -1,6 +1,6 @@
 <?php
 
-$env = \Framer\Core\Model\EnvModel::get();
+$env = \Framer\Core\Model\EnvModel::init();
 
 return [
     'paths' => [

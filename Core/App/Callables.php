@@ -2,10 +2,15 @@
 
 use Framer\Core\App\Helpers;
 use Framer\Core\App\Session;
-use Framer\Core\Model\EnvModel;
+use Framer\Core\Model\EnvModel as Env;
 use Framer\Core\App\View;
 use Framer\Core\App\Response;
 
+if ( !function_exists('view') ) {
+    function view($viewpath, $vars=[], $layout=null) {
+        return View::load($viewpath, $vars, $layout, Env::$vars->engine);
+    }
+}
 
 if ( !function_exists('dump') ) {
     function dump($vars, $exit=true, $toformat=false) {
@@ -16,43 +21,6 @@ if ( !function_exists('dump') ) {
 if ( !function_exists('json_dump') ) {
     function json_dump($vars, $exit=true) {
         return Helpers::json_dump($vars, $exit);
-    }
-}
-
-
-if ( !function_exists('uri') ) {
-    function uri($filepath) {
-        return Helpers::uri($filepath);
-    }
-}
-
-if ( !function_exists('path') ) {
-    function path($filepath) {
-        return Helpers::path($filepath);
-    }
-}
-
-if ( !function_exists('route') ) {
-    function route($pathorname, $vars=null) {
-        return Helpers::route($pathorname, $vars);
-    }
-}
-
-if ( !function_exists('redirect') ) {
-    function redirect($pathorname) {
-        return Helpers::redirect($pathorname);
-    }
-}
-
-if ( !function_exists('view') ) {
-    function view($viewpath, $vars=[], $layout=null) {
-        View::load($viewpath, $vars, $layout, EnvModel::get('engine'));
-    }
-}
-
-if ( !function_exists('assets') ) {
-    function assets($path) {
-        return uri('Src/Assets/' . $path);
     }
 }
 

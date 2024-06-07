@@ -3,7 +3,6 @@
 namespace Framer\Core\App;
 
 use Framer\Core\App\Input;
-use Framer\Core\App\Helpers;
 
 /**
  * Session class

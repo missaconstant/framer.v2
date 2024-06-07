@@ -33,7 +33,6 @@ class $name extends Controller
 }
 
 EOD;
-
 return $string;
 
 }

@@ -5,7 +5,6 @@ namespace Framer\Core\Useful\Classes\Generated;
 function generateModel($name, $tablename) {
     $name = ucfirst($name);
     $string =
-
 <<<EOD
 <?php
 
@@ -21,7 +20,5 @@ class $name extends Model
 }
 
 EOD;
-
-    return $string;
-
+return $string;
 }

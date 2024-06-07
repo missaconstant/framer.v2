@@ -2,7 +2,7 @@
 
 namespace Framer\Core\Useful\Classes;
 
-use Framer\Core\Model\EnvModel;
+use Framer\Core\Model\EnvModel as Env;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -18,7 +18,7 @@ class Mailer {
      * @return EnvModel
      */
     static function getConfigs() {
-        return EnvModel::get();
+        return Env::$vars;
     }
 
 

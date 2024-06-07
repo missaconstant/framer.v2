@@ -2,8 +2,6 @@
 
 namespace Framer\Core\App;
 
-use Framer\Core\App\Helpers;
-use Framer\Core\Exceptions\FramerException;
 use Framer\Core\App\Templater;
 
 class View
@@ -22,11 +20,11 @@ class View
     
         switch ( $useTemplate ) {
             case 'latte':
-                Templater::latte($viewpath, $vars);
+                return Templater::latte($viewpath, $vars);
                 break;
 
             default:
-                Templater::default($viewpath, $vars, $layout);
+                // Templater::default($viewpath, $vars, $layout);
                 break;
         }
         

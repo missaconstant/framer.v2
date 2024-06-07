@@ -7,6 +7,7 @@ use Framer\Core\App\Bootstrap;
 
 use function Framer\Core\Useful\Classes\Generated\generateController;
 use function Framer\Core\Useful\Classes\Generated\generateModel;
+use function Framer\Core\Useful\Classes\Generated\generateRoute;
 
 define('DEFAULT_PORT', 9000);
 
@@ -95,6 +96,20 @@ if ( php_sapi_name() === 'cli' ) {
                 $string = generateModel($params[1], ($params[2] ?? 'blank'));
                 @file_put_contents(__DIR__ . "/Src/Models/" . ucfirst($params[1]) . '.php', $string);
                 echo "\033[96mSuccess: Model [". ucfirst($params[1]) ."] successfuly created.\033[39m\n\n";
+                break;
+
+            case 'route':
+                include_once __DIR__ . '/Core/Useful/Generated/generate.route.php';
+                $path = __DIR__ . "/Src/Routes/" . ucfirst($params[1]) . 'Routes.php';
+
+                if (file_exists($path)) {
+                    echo "\033[31mFailure: Route [". ucfirst($params[1]) ."] successfuly created.\033[39m\n\n";
+                    break;
+                }
+
+                $string = generateRoute($params[1], ($params[2] ?? 'blank'));
+                @file_put_contents($path, $string);
+                echo "\033[96mSuccess: Route [". ucfirst($params[1]) ."] successfuly created.\033[39m\n\n";
                 break;
         }
     }
